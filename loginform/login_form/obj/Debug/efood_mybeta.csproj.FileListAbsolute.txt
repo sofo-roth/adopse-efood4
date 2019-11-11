@@ -1,0 +1,16 @@
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.exe.config
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.exe
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.pdb
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\MySql.Data.dll
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\Google.Protobuf.dll
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\Renci.SshNet.dll
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\bin\Debug\MySql.Data.xml
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.csprojAssemblyReference.cache
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.LoginForm.resources
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.Properties.Resources.resources
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.csproj.GenerateResource.cache
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.csproj.CoreCompileInputs.cache
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.csproj.CopyComplete
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.exe
+C:\Users\Athina\Desktop\εργασίες\adopse\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.pdb
