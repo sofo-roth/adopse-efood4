@@ -1,6 +1,6 @@
 create table Shop
 (
-	ShopId int primary key NOT NULL,
+	ShopId int primary key NOT NULL AUTO_INCREMENT,
 	Name varchar(255),
 	Address varchar(255) NOT NULL,
 	Phone varchar(255),
@@ -11,27 +11,27 @@ create table Shop
 
 create table userstable
 (
-	username varchar(50) ,
+	username varchar(50) NOT NULL
 	passwd varchar(50),
 	fname varchar(50),
 	lname varchar(50),
 	email varchar(50),
 	address varchar(200) NOT NULL,
 	phone varchar(15),
-	userId int primary key NOT NULL
+	userId int primary key NOT NULL AUTO_INCREMENT
 )
 
 
 
 create table FoodItem
 (
-	NameItem varchar(255) primary key NOT NULL,
+	NameItem varchar(255) primary key NOT NULL AUTO_INCREMENT,
 	FOREIGN KEY (CategoryID) REFERENCES FoodItemCategories(CategoryID)
 )
 
 create table FoodItemCategories
 (
-	CategoryID primary key NOT NULL,
+	CategoryID primary key NOT NULL AUTO_INCREMENT,
 	FoodType varchar(255) ,  //κατηγορια φαγητου
 	FOREIGN KEY (NameItem) REFERENCES FoodItem(NameItem) // η κάθε κατηγορία έχει ένα ή περισσότερα foodItems
 )
@@ -44,7 +44,7 @@ create table ShopFoodItemCategories
 
 create table FoodItemIngredients
 (
-	IngID int primary key NOT NULL,
+	IngID int primary key NOT NULL AUTO_INCREMENT,
 	Iname varchar(50) ,
 	FoodType varchar(255),
 	Itype int // 1 για αλμυρο_2 για γλυκο
@@ -52,7 +52,7 @@ create table FoodItemIngredients
 
 create table Orders 
 (
-	orderId int primary key NOT NULL,
+	orderId int primary key NOT NULL AUTO_INCREMENT,
 	FOREIGN KEY (username) REFERENCES userstable(username),
 	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
 	Useraddress varchar(200),  // θα συνδυάζεται με τον πίνακα usertable
@@ -75,7 +75,7 @@ create table OrderLines
 
 create table ShopWorkingHours
 (
-	Id int primary key NOT NULL,
+	Id int primary key NOT NULL AUTO_INCREMENT,
 	FOREIGN KEY (Shopid) REFERENCES Shop(Shopid),
 	Hour int,
 	Date varachar(20)
