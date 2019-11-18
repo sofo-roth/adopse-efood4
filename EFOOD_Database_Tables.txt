@@ -1,6 +1,6 @@
 create table Shop
 (
-	ShopId int primary key NOT NULL AUTO_INCREMENT,
+	ShopID int primary key NOT NULL AUTO_INCREMENT,
 	Name varchar(255),
 	Address varchar(255) NOT NULL,
 	Phone varchar(255),
@@ -18,7 +18,7 @@ create table userstable
 	email varchar(50),
 	address varchar(200) NOT NULL,
 	phone varchar(15),
-	userId int primary key NOT NULL AUTO_INCREMENT
+	userID int primary key NOT NULL AUTO_INCREMENT
 )
 
 
@@ -39,7 +39,7 @@ create table FoodItemCategories
 create table ShopFoodItemCategories
 (
 	FOREIGN KEY (CategoryID) REFERENCES FoodItemCategories(CategoryID) // οι κατηγοριες φαγητων
-	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId) // τα id των καταστηματων
+	FOREIGN KEY (ShopID) REFERENCES Shop(ShopID) // τα id των καταστηματων
 )
 
 create table FoodItemIngredients
@@ -53,8 +53,8 @@ create table FoodItemIngredients
 create table Orders 
 (
 	orderId int primary key NOT NULL AUTO_INCREMENT,
-	FOREIGN KEY (userId) REFERENCES userstable(userId),
-	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
+	FOREIGN KEY (userID) REFERENCES userstable(userID),
+	FOREIGN KEY (ShopID) REFERENCES Shop(ShopID),
 	Useraddress varchar(200),  // θα συνδυάζεται με τον πίνακα usertable
 	Comments varchar(200),
 	Datetime varachar(50)	
@@ -62,21 +62,21 @@ create table Orders
 )
 create table UserClicks 
 (
-	FOREIGN KEY (shopid) REFERENCES Shop(shopid),
-	FOREIGN KEY (userId) REFERENCES usertable(userId),
+	FOREIGN KEY (shopID) REFERENCES Shop(shopID),
+	FOREIGN KEY (userID) REFERENCES usertable(userID),
 	DateTime varachar(200)
 )
 
 create table OrderLines
 (
-	FOREIGN KEY (orderId) REFERENCES Orders(orderId)
+	FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 	FOREIGN KEY (IngID) REFERENCES FoodItemsIngredients(IngID)
 )
 
 create table ShopWorkingHours
 (
 	Id int primary key NOT NULL AUTO_INCREMENT,
-	FOREIGN KEY (Shopid) REFERENCES Shop(Shopid),
+	FOREIGN KEY (ShopID) REFERENCES Shop(ShopID),
 	Hour int,
 	Date varachar(20)
 )
@@ -85,7 +85,7 @@ create table ShopWorkingHours
 create table ShopPriceIngredient 
 (
 	FOREIGN KEY (IngID) REFERENCES FoodItemIngredients(IngID),
-	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
+	FOREIGN KEY (ShopID) REFERENCES Shop(ShopID),
 	Price double NOT NULL
 	
 )
