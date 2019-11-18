@@ -25,13 +25,13 @@ create table userstable
 
 create table FoodItem
 (
-	NameItem varchar(255) primary key NOT NULL AUTO_INCREMENT,
+	NameItem int primary key NOT NULL AUTO_INCREMENT,
 	FOREIGN KEY (CategoryID) REFERENCES FoodItemCategories(CategoryID)
 )
 
 create table FoodItemCategories
 (
-	CategoryID primary key NOT NULL AUTO_INCREMENT,
+	CategoryID int primary key NOT NULL AUTO_INCREMENT,
 	FoodType varchar(255) ,  //κατηγορια φαγητου
 	FOREIGN KEY (NameItem) REFERENCES FoodItem(NameItem) // η κάθε κατηγορία έχει ένα ή περισσότερα foodItems
 )
