@@ -70,7 +70,7 @@ create table UserClicks
 create table OrderLines
 (
 	FOREIGN KEY (orderId) REFERENCES Orders(orderId)
-	FOREIGN KEY (Iname) REFERENCES FoodItemsIngredients(lname)
+	FOREIGN KEY (IngID) REFERENCES FoodItemsIngredients(IngID)
 )
 
 create table ShopWorkingHours
