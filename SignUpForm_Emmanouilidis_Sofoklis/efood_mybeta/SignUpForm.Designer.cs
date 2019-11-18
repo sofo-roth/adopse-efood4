@@ -192,7 +192,6 @@
             this.label11.Size = new System.Drawing.Size(17, 24);
             this.label11.TabIndex = 21;
             this.label11.Text = "*";
-            this.label11.Click += new System.EventHandler(this.label11_Click_1);
             // 
             // panel5
             // 
@@ -260,7 +259,6 @@
             this.label1.Size = new System.Drawing.Size(142, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "Sign Up ";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // button2
             // 
