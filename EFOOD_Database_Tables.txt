@@ -53,7 +53,7 @@ create table FoodItemIngredients
 create table Orders 
 (
 	orderId int primary key NOT NULL AUTO_INCREMENT,
-	FOREIGN KEY (username) REFERENCES userstable(username),
+	FOREIGN KEY (userId) REFERENCES userstable(userId),
 	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
 	Useraddress varchar(200),  // θα συνδυάζεται με τον πίνακα usertable
 	Comments varchar(200),
