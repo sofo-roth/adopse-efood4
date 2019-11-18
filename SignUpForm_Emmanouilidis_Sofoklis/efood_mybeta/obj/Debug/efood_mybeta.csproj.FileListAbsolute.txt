@@ -21,3 +21,14 @@ C:\Users\lepas\source\repos\efood_mybeta - Copy\efood_mybeta\obj\Debug\efood_myb
 C:\Users\lepas\source\repos\efood_mybeta - Copy\efood_mybeta\obj\Debug\efood_mybeta.csproj.CopyComplete
 C:\Users\lepas\source\repos\efood_mybeta - Copy\efood_mybeta\obj\Debug\efood_mybeta.exe
 C:\Users\lepas\source\repos\efood_mybeta - Copy\efood_mybeta\obj\Debug\efood_mybeta.pdb
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\bin\Debug\efood_mybeta.exe.config
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\bin\Debug\efood_mybeta.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\bin\Debug\efood_mybeta.pdb
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.csprojAssemblyReference.cache
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.Properties.Resources.resources
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.SignUpForm.resources
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.csproj.GenerateResource.cache
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.csproj.CoreCompileInputs.cache
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.csproj.CopyComplete
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\efood_mybeta\obj\Debug\efood_mybeta.pdb
