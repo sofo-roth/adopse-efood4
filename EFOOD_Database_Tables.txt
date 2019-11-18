@@ -1,34 +1,38 @@
 create table Shop
 (
-	ShopId int primary key,
+	ShopId int primary key NOT NULL,
 	Name varchar(255),
-	Address varchar(255),
+	Address varchar(255) NOT NULL,
 	Phone varchar(255),
 	Email varchar(255), 
-	Elaxisti int // ελάχιστη παραγγελία 
+	Elaxisti int ,// ελάχιστη παραγγελία 
+	isActive boolean
 )
 
 create table userstable
 (
-	username varchar(50) primary key,
+	username varchar(50) ,
 	passwd varchar(50),
 	fname varchar(50),
 	lname varchar(50),
 	email varchar(50),
-	address varchar(200),
-	phone int
+	address varchar(200) NOT NULL,
+	phone varchar(15),
+	userId int primary key NOT NULL
 )
 
 
 
 create table FoodItem
 (
-	NameItem varchar(255) primary key 
+	NameItem varchar(255) primary key NOT NULL,
+	FOREIGN KEY (CategoryID) REFERENCES FoodItemCategories(CategoryID)
 )
 
 create table FoodItemCategories
 (
-	FoodType varchar(255) primary key,  //κατηγορια φαγητου
+	CategoryID primary key NOT NULL,
+	FoodType varchar(255) ,  //κατηγορια φαγητου
 	FOREIGN KEY (NameItem) REFERENCES FoodItem(NameItem) // η κάθε κατηγορία έχει ένα ή περισσότερα foodItems
 )
 
@@ -40,16 +44,26 @@ create table ShopFoodItemCategories
 
 create table FoodItemIngredients
 (
-	Iname varchar(50) primary key,
+	IngID int primary key NOT NULL,
+	Iname varchar(50) ,
 	Itype int // 1 για αλμυρο_2 για γλυκο
 ) 
 
 create table Orders 
 (
-	orderId int primary key,
-	FOREIGN KEY (username) REFERENCES userstable(username)
-	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId)	
+	orderId int primary key NOT NULL,
+	FOREIGN KEY (username) REFERENCES userstable(username),
+	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
+	Useraddress varchar(200),  // θα συνδυάζεται με τον πίνακα usertable
+	Comments varchar(200),
+	Datetime varachar(50)	
 		
+)
+create table UserClicks 
+(
+	FOREIGN KEY (shopid) REFERENCES Shop(shopid),
+	FOREIGN KEY (userId) REFERENCES usertable(userId),
+	DateTime varachar(200)
 )
 
 create table OrderLines
@@ -57,6 +71,16 @@ create table OrderLines
 	FOREIGN KEY (orderId) REFERENCES Orders(orderId)
 	FOREIGN KEY (Iname) REFERENCES FoodItemsIngredients(lname)
 )
+
+create table ShopWorkingHours
+(
+	Id int primary key NOT NULL,
+	FOREIGN KEY (Shopid) REFERENCES Shop(Shopid),
+	Hour int,
+	Date varachar(20)
+)
+
+
 
 
 
