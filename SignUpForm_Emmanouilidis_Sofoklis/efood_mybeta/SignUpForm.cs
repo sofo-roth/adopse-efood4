@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,25 +18,6 @@ namespace efood_mybeta
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -83,8 +64,8 @@ namespace efood_mybeta
                 }
 
                 conn.Close();
-                this.Hide();
-               
+                
+
             }
         }
 
@@ -112,19 +93,12 @@ namespace efood_mybeta
             fnameTxt.Text = lnameTxt.Text = emailTxt.Text = addrTxt.Text = phoneTxt.Text = usernameTxt.Text = passwdTxt.Text = "";
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void label11_Click_1(object sender, EventArgs e)
-        {
-
+            this.Hide();
+            LoginForm sn = new LoginForm();
+            sn.ShowDialog();
+            this.Close();
         }
     }
  }
