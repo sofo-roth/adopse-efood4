@@ -1,0 +1,62 @@
+create table Shop
+(
+	ShopId int primary key,
+	Name varchar(255),
+	Address varchar(255),
+	Phone varchar(255),
+	Email varchar(255), 
+	Elaxisti int // ελάχιστη παραγγελία 
+)
+
+create table userstable
+(
+	username varchar(50) primary key,
+	passwd varchar(50),
+	fname varchar(50),
+	lname varchar(50),
+	email varchar(50),
+	address varchar(200),
+	phone int
+)
+
+
+
+create table FoodItem
+(
+	NameItem varchar(255) primary key 
+)
+
+create table FoodItemCategories
+(
+	FoodType varchar(255) primary key,  //κατηγορια φαγητου
+	FOREIGN KEY (NameItem) REFERENCES FoodItem(NameItem) // η κάθε κατηγορία έχει ένα ή περισσότερα foodItems
+)
+
+create table ShopFoodItemCategories
+(
+	FOREIGN KEY (FoodType) REFERENCES FoodItemCategories(FoodType) // οι κατηγοριες φαγητων
+	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId) // τα id των καταστηματων
+)
+
+create table FoodItemIngredients
+(
+	Iname varchar(50) primary key,
+	Itype int // 1 για αλμυρο_2 για γλυκο
+) 
+
+create table Orders 
+(
+	orderId int primary key,
+	FOREIGN KEY (username) REFERENCES userstable(username)
+	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId)	
+		
+)
+
+create table OrderLines
+(
+	FOREIGN KEY (orderId) REFERENCES Orders(orderId)
+	FOREIGN KEY (Iname) REFERENCES FoodItemsIngredients(lname)
+)
+
+
+
