@@ -46,6 +46,7 @@ create table FoodItemIngredients
 (
 	IngID int primary key NOT NULL,
 	Iname varchar(50) ,
+	FoodType varchar(255),
 	Itype int // 1 για αλμυρο_2 για γλυκο
 ) 
 
@@ -81,6 +82,12 @@ create table ShopWorkingHours
 )
 
 
-
+create table ShopPriceIngredient 
+(
+	FOREIGN KEY (IngID) REFERENCES FoodItemIngredients(IngID),
+	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId),
+	Price double NOT NULL
+	
+)
 
 
