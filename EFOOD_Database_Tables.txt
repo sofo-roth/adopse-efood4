@@ -38,7 +38,7 @@ create table FoodItemCategories
 
 create table ShopFoodItemCategories
 (
-	FOREIGN KEY (FoodType) REFERENCES FoodItemCategories(FoodType) // οι κατηγοριες φαγητων
+	FOREIGN KEY (CategoryID) REFERENCES FoodItemCategories(CategoryID) // οι κατηγοριες φαγητων
 	FOREIGN KEY (ShopId) REFERENCES Shop(ShopId) // τα id των καταστηματων
 )
 
