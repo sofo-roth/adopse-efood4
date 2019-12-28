@@ -91,19 +91,19 @@
             // editMyInfoToolStripMenuItem
             // 
             this.editMyInfoToolStripMenuItem.Name = "editMyInfoToolStripMenuItem";
-            this.editMyInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editMyInfoToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.editMyInfoToolStripMenuItem.Text = "Edit my info";
             // 
             // viewMyOrdersToolStripMenuItem
             // 
             this.viewMyOrdersToolStripMenuItem.Name = "viewMyOrdersToolStripMenuItem";
-            this.viewMyOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewMyOrdersToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.viewMyOrdersToolStripMenuItem.Text = "View my orders";
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             // 
             // treeView1
@@ -126,6 +126,7 @@
             treeNode5});
             this.treeView1.Size = new System.Drawing.Size(170, 499);
             this.treeView1.TabIndex = 4;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // ShopResults
             // 

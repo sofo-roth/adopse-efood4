@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
+using ValueModels;
 
 namespace ShopResults
 {
     public partial class ShopResults : Form
     {
+
         public ShopResults(string address)
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace ShopResults
             {
                 Address = "meeeeemsseos",            
                 ShopName = "shop1",
-                distance = 3.3,
+                Distance = 3.3,
                 Id = 0
             });
 
@@ -44,7 +44,7 @@ namespace ShopResults
             {
                 Address = "fgedgebfdffscrgrwegwe",
                 ShopName = "shop153",
-                distance = 352.3,
+                Distance = 352.3,
                 Id = 1
             });
 
@@ -129,6 +129,9 @@ namespace ShopResults
             MessageBox.Show("shop id selected: " + id ); //var storeform = new StoreForm(id);
         }
 
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
 
+        }
     }
 }
