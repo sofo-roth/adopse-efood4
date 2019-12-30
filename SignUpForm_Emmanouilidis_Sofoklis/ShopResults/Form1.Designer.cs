@@ -44,6 +44,9 @@
             this.viewMyOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.StoreNameSearchBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.shopResultsGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +69,7 @@
             this.shopResultsGridView.Size = new System.Drawing.Size(620, 499);
             this.shopResultsGridView.TabIndex = 2;
             this.shopResultsGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopClicked);
+            this.shopResultsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopResultsGridView_CellContentClick);
             this.shopResultsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.shopResultsGridView_DataBindingComplete);
             // 
             // menuStrip1
@@ -77,6 +81,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(966, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // optionsToolStripMenuItem
             // 
@@ -128,12 +133,41 @@
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
+            // StoreNameSearchBox
+            // 
+            this.StoreNameSearchBox.Location = new System.Drawing.Point(231, 68);
+            this.StoreNameSearchBox.Name = "StoreNameSearchBox";
+            this.StoreNameSearchBox.Size = new System.Drawing.Size(620, 20);
+            this.StoreNameSearchBox.TabIndex = 5;
+            this.StoreNameSearchBox.TextChanged += new System.EventHandler(this.StoreNameSearchBox_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(53, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Categories";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(161, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Store name:";
+            // 
             // ShopResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
             this.ClientSize = new System.Drawing.Size(966, 636);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.StoreNameSearchBox);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.shopResultsGridView);
             this.Controls.Add(this.menuStrip1);
@@ -160,6 +194,9 @@
         private System.Windows.Forms.ToolStripMenuItem viewMyOrdersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TextBox StoreNameSearchBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

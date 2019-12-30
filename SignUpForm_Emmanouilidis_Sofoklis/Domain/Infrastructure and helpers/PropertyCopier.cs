@@ -51,6 +51,7 @@ namespace Domain.Infrastructure
             }
             return data;
         }
+
         private static T GetItem<T>(DataRow dr)
         {
             Type temp = typeof(T);
@@ -64,8 +65,7 @@ namespace Domain.Infrastructure
                     {
                         var value = dr[column.ColumnName] == DBNull.Value ? null : dr[column.ColumnName]; 
                         pro.SetValue(obj, value, null);
-                    }
-                        
+                    }                        
                     else
                         continue;
                 }

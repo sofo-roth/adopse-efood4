@@ -1,5 +1,6 @@
 ﻿using Domain.AccountManager;
 using Domain.Repositories;
+using Domain.ValueModels;
 using Microsoft.AspNet.Identity;
 using System;
 using PasswordHasher = Domain.AccountManager.PasswordHasher;
@@ -30,10 +31,10 @@ namespace Domain.Services
             UserIdentity.SetInstance(info);
         }
 
-        public bool VerifyUserPassword(string providedPassword, string databasePassword)
+        public bool VerifyUserPassword(string providedPassword, string hashedPassword)
         {
                         
-            var verificationResult = _hasher.VerifyHashedPassword(databasePassword, providedPassword);
+            var verificationResult = _hasher.VerifyHashedPassword(hashedPassword, providedPassword);
 
             return verificationResult == PasswordVerificationResult.Success;
         }
@@ -42,29 +43,41 @@ namespace Domain.Services
         {
             int id = 0;
 
-            id = _repository.Create(user);
+            user.Passwd = RetrieveHash(user.Passwd);
 
-            user.UserId = id;
+            id = _repository.Create(user);
 
             if (id <= 0)
                 throw new Exception("An unknown error occured. Registration failed.");
 
+            user.UserId = id;
             UserIdentity.SetInstance(user);
         }
 
         public void Update(UserInformation user)
         {
-            var id = UserInfo.UserId;
+            user.UserId = UserInfo.UserId;
 
-             _repository.Update(user, id);
+            user.Passwd = UserInfo.Passwd; 
 
-            user.UserId = id;
+             _repository.Update(user);
+
             UserIdentity.SetInstance(user);
         }
 
-        public void LogoutUser()
+        public void UpdateWithNewPassword(UserInformation user, string oldPassword)
         {
-            UserIdentity.SetInstance(new UserInformation());
+            var isValid = VerifyUserPassword(oldPassword, UserInfo.Passwd);
+            if (!isValid)
+                throw new Exception("Wrong password provided.");
+
+            user.UserId = UserInfo.UserId;
+
+            user.Passwd = RetrieveHash(user.Passwd);
+
+            _repository.Update(user);
+            
+            UserIdentity.SetInstance(user);
         }
 
     }

@@ -1,20 +1,23 @@
 ﻿using Domain.Infrastructure;
-
+using Domain.ValueModels;
 
 namespace Domain.AccountManager
 {
     public sealed class UserIdentity 
     {
-        private static UserIdentity _singletonUser = new UserIdentity();
-        private static readonly object _lock = new object();
+        private static UserIdentity _singletonUser = null;
+        private static readonly object _padlock = new object();
         
-        public UserInformation UserInfo = new UserInformation();
+        public UserInformation UserInfo;
 
 
-        private UserIdentity() { }
+        private UserIdentity()
+        {
 
+            UserInfo =  new UserInformation(); 
+        }
 
-
+        
         public static void SetInstance(UserInformation info)
         {
             
@@ -26,20 +29,19 @@ namespace Domain.AccountManager
         {
             get
             {
-                lock (_lock)
+                if (_singletonUser == null)
                 {
-                    if (_singletonUser == null)
+                    lock (_padlock)
                     {
-                        _singletonUser = new UserIdentity();
+                        if (_singletonUser == null)
+                            _singletonUser = new UserIdentity();                        
                     }
-
                 }
                 return _singletonUser.UserInfo.Clone();
             }
            
         }
-        
-        
+                
 
     }
 }

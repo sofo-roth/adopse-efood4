@@ -10,7 +10,7 @@ using ValueModels;
 
 namespace Domain.Services
 {
-    class ShopResultsService : ServiceBase
+    public class ShopResultsService : ServiceBase
     {
 
         ShopResultsRepository _repository;
@@ -24,14 +24,14 @@ namespace Domain.Services
 
         }
 
-        public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<string, int> foodCategories)
+        public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
 
             var dto = _repository.Read(address, ref foodCategories);
 
             dto.Update(x => x.Distance = _geoLocation.CalculateDistance(address, x.Address));
 
-            return dto;
+            return dto.Where(x => x.Distance < 5000);
 
         }
 

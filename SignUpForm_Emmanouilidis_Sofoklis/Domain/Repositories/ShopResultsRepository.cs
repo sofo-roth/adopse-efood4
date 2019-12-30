@@ -12,9 +12,9 @@ namespace Domain.Repositories
     {
 
         
-        public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<string,int> foodCategories)
+        public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
-            foodCategories = new Dictionary<string, int>();
+            foodCategories = new Dictionary<int, string>();
             var shops = new List<Shop>();
             var shopFoodCategories = new List<ShopFoodItemCategories>(); 
 
@@ -30,8 +30,9 @@ namespace Domain.Repositories
 
                     while (reader.Read())
                     {
-                        var key = reader.GetString("FoodType");
-                        var value = reader.GetInt32("CategoryId");
+                        var key = reader.GetInt32("CategoryId");
+                        var value = reader.GetString("FoodType");
+                        
                        
                         foodCategories.Add(key,value);
                     }
@@ -62,8 +63,7 @@ namespace Domain.Repositories
                                                 ShopName = x.Name,
                                                 Categories = (from s in shopFoodCategories
                                                              where s.ShopId == x.ShopId
-                                                             select s.CategoryId).ToList()
-                                            
+                                                             select s.CategoryId).ToList()                                            
                                              });
 
             return shopsDto;

@@ -1,8 +1,7 @@
-﻿using Domain.AccountManager;
-using Domain.Context;
+﻿using Domain.Context;
 using Domain.DatabaseModels;
 using Domain.Infrastructure;
-
+using Domain.ValueModels;
 
 namespace Domain.Repositories
 {
@@ -19,11 +18,11 @@ namespace Domain.Repositories
             return ExecDbScripts(script);
         }
 
-        public int Update(UserInformation user,int id)
+        public int Update(UserInformation user)
         {
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
-            userDto.UserId = id;
+            
 
             var script = GetUpdateScript(userDto);
 

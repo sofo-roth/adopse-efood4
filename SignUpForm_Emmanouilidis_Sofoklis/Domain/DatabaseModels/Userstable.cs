@@ -16,7 +16,6 @@ namespace Domain.DatabaseModels
         public string Address { get; set; }
         public string Phone { get; set; }
         
-        public int UserShopId { get; set; }
         public bool AllowDataUsage { get; set; }
 
 

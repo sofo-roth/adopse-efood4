@@ -180,22 +180,33 @@ namespace ShopResults
 
         }
 
+        private void CheckParents(TreeNode node)
+        {
+            if (node.Parent != null)
+            {
+                node.Parent.Checked = true;
+                CheckParents(node.Parent);
+            }
+        }
+
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
             
             if(e.Action != TreeViewAction.ByMouse && e.Action !=TreeViewAction.ByKeyboard) return;
             WaitAsync(2.5);
-
+            
 
             CheckAllNodes(e.Node.Nodes, e.Node.Checked);
             if(e.Node.Index>0)
                 e.Node.Parent.Checked = e.Node.Checked;
-            
+
+            CheckParents(e.Node);
+
             List<string> uncheckedNodes = GetUncheckedNodes(treeView1.Nodes);
 
             var bindingData = new List<ShopCol>();
             if (!uncheckedNodes.Contains("All"))
-                bindingData = mock?.Where(x => !x.ingrad?.All(y => uncheckedNodes.Contains(y)) ?? true).ToList();
+                bindingData = mock?.Where(x => !x.ingrad?.All(y => uncheckedNodes.Contains(y)) ?? false).ToList();
 
             var mockdata = bindingData?.Select(x => new ShopGridViewModel()
             {
@@ -213,6 +224,9 @@ namespace ShopResults
             
         }
 
-        
+        private void shopResultsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

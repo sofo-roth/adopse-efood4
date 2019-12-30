@@ -66,6 +66,7 @@
             this.shopResultsGridView.Size = new System.Drawing.Size(620, 499);
             this.shopResultsGridView.TabIndex = 2;
             this.shopResultsGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopClicked);
+            this.shopResultsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopResultsGridView_CellContentClick);
             this.shopResultsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.shopResultsGridView_DataBindingComplete);
             // 
             // menuStrip1
