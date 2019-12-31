@@ -81,7 +81,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(966, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            //this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // optionsToolStripMenuItem
             // 
@@ -139,7 +139,7 @@
             this.StoreNameSearchBox.Name = "StoreNameSearchBox";
             this.StoreNameSearchBox.Size = new System.Drawing.Size(620, 20);
             this.StoreNameSearchBox.TabIndex = 5;
-            this.StoreNameSearchBox.TextChanged += new System.EventHandler(this.StoreNameSearchBox_TextChanged);
+            this.StoreNameSearchBox.KeyUp += new System.EventHandler(this.StoreNameSearchBox_KeyUp);
             // 
             // label1
             // 

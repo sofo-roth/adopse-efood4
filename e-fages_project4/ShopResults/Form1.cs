@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain.Services;
+
 
 
 namespace ShopResults
 {
     public partial class ShopResults : Form
     {
+        DispatcherObserver _d = new DispatcherObserver();
 
-        UserAccountService _account = new UserAccountService();
+        //UserAccountService _account = new UserAccountService();
 
         static List<string> mockIngredients = new List<string> { "vas", "vasilia2s" };
 
@@ -191,16 +192,26 @@ namespace ShopResults
 
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
+            if (e.Action != TreeViewAction.ByMouse && e.Action != TreeViewAction.ByKeyboard) return;
+            CheckAllNodes(e.Node.Nodes, e.Node.Checked);
+
+            _d.Debounce(2000, x => Dostuff(sender,e));
+        }
+
+
+
+        private void Dostuff(object sender, TreeViewEventArgs e)
+        {
             
-            if(e.Action != TreeViewAction.ByMouse && e.Action !=TreeViewAction.ByKeyboard) return;
+            
             WaitAsync(2.5);
             
 
-            CheckAllNodes(e.Node.Nodes, e.Node.Checked);
-            if(e.Node.Index>0)
-                e.Node.Parent.Checked = e.Node.Checked;
+            
+            //if(e.Node.Index>0)
+            //    e.Node.Parent.Checked = e.Node.Checked;
 
-            CheckParents(e.Node);
+            //CheckParents(e.Node);
 
             List<string> uncheckedNodes = GetUncheckedNodes(treeView1.Nodes);
 

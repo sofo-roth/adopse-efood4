@@ -1,9 +1,9 @@
 ﻿
 namespace Domain.ValueModels
 {
-    public class Ingredient
+    public class CartItemIngredient
     {
-        public int Id { get; set; }
+        public int IngredientId { get; set; }
 
         public string Name { get; set; }
 

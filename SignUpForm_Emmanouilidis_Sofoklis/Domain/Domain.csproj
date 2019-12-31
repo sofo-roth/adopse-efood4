@@ -103,8 +103,8 @@
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\ShopResultsService.cs" />
     <Compile Include="Services\UserAccountService.cs" />
-    <Compile Include="Cart\CartItemViewModel.cs" />
-    <Compile Include="Cart\IngredientViewModel.cs" />
+    <Compile Include="Cart\CartItem.cs" />
+    <Compile Include="Cart\CartItemIngredient.cs" />
     <Compile Include="ValueModels\OrderDetails.cs" />
     <Compile Include="ValueModels\ShopGridViewModel.cs" />
   </ItemGroup>

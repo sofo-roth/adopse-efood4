@@ -12,7 +12,9 @@ namespace Domain.ValueModels
 
         public int Quantity { get; set; }
 
-        public List<Ingredient> Ingredients { get; set; }
+        public int? FoodItemId { get; set; }
+
+        public List<CartItemIngredient> Ingredients { get; set; }
 
     }
 }

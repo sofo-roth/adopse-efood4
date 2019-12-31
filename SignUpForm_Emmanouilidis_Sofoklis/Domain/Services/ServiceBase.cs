@@ -2,15 +2,16 @@
 using Domain.Cart;
 using Domain.Repositories;
 using Domain.ValueModels;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Domain.Services
 {
     public abstract class ServiceBase
     {
-        public UserInformation UserInfo => UserIdentity.Instance;
+        public static UserInformation UserInfo => UserIdentity.Instance;
 
-        public CartCollection Cart => CartCollection.GetInstance;
+        public static CartCollection Cart => CartCollection.GetInstance;
 
         private readonly RepositoryBase _repository;
 
@@ -22,9 +23,19 @@ namespace Domain.Services
 
         public void CheckOut(OrderDetails ord)
         {
-            var items = GetCartItems();
+            var cartItems = GetCartItems();
 
-            _repository.MakeOrder(items,ord);
+            var cartItemsPerShop = cartItems.GroupBy(x => x.ShopId)
+                                        .Select(group => group.ToList());
+
+            foreach(var items in cartItemsPerShop)
+            {
+                ord.ShopId = items[0].ShopId;
+
+                ord.UserId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
+                _repository.MakeOrder(items, ord);
+            }
+            
         }
 
         public void LogoutUser()

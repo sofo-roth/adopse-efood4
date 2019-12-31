@@ -25,17 +25,12 @@ C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopRes
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\ShopResults.exe
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\ShopResults.pdb
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\BouncyCastle.Crypto.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Domain.exe
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Google.Protobuf.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\MySql.Data.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Renci.SshNet.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Domain.pdb
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Domain.exe.config
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Google.Protobuf.xml
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\MySql.Data.xml
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Renci.SshNet.xml
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\obj\Debug\ShopResults.csprojAssemblyReference.cache
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\obj\Debug\ShopResults.ShopResults.resources
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\e-fages_project4\ShopResults\obj\Debug\ShopResults.Properties.Resources.resources

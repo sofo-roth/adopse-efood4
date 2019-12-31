@@ -34,7 +34,11 @@ namespace Domain.AccountManager
                     lock (_padlock)
                     {
                         if (_singletonUser == null)
-                            _singletonUser = new UserIdentity();                        
+                        {
+                            _singletonUser = new UserIdentity();
+                            _singletonUser.UserInfo.UserId = -1;
+                        }
+                                                
                     }
                 }
                 return _singletonUser.UserInfo.Clone();

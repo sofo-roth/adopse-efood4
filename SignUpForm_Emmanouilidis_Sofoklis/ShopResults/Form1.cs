@@ -36,17 +36,34 @@ namespace ShopResults
 
             _address = address;
 
-                                 
+
+        }
+
+        private void efood_Load(object sender, EventArgs e)
+        {
+            FetchData();
+
+            PopulateMenuStrip();
+
+            PopulateTreeView();
+
+            PopulateDataGrid();
+
+            SetDataGridViewOptions();
+        }
+
+        private void FetchData()
+        {
+            var addr = _address;
+            
+
+            _shops = _service.Read(_address, ref foodCategories);
         }
 
         private void PopulateDataGrid()
         {
 
-            var addr = _address;
-            
-
-
-            _shops = _service.Read(_address, ref foodCategories);
+           
 
             //var mock = new List<ShopGridViewModel>(); todo: this list will be replaced with database data based on the address
             //mock.Add(new ShopGridViewModel()        
@@ -70,7 +87,7 @@ namespace ShopResults
 
 
 
-            var bindingList = new SortableBindingList<ShopGridViewModel>(_shops);
+            var bindingList = new SortableBindingList<ShopGridViewModel>(_shops.Where(x => x.Categories.Count>0));
 
             var dataBinding = new BindingSource(bindingList, null);
 
@@ -79,6 +96,7 @@ namespace ShopResults
 
 
         }
+
         private void PopulateTreeView()
         {
 
@@ -94,6 +112,39 @@ namespace ShopResults
         }
 
 
+        private void PopulateMenuStrip()
+        {
+            var cartMenuItem = new ToolStripMenuItem("View my cart");
+            cartMenuItem.Click += new EventHandler(OpenCart);
+
+
+            if (_service.UserInfo.UserId <= 0) return;
+
+            var logoutMenuItem = new ToolStripMenuItem("Logout");
+            logoutMenuItem.Click += new EventHandler((sender, e) => _service.LogoutUser());
+
+            var updateUserMenuItem = new ToolStripMenuItem("Update my info");
+            updateUserMenuItem.Click += new EventHandler(OpenUserUpdate);
+
+            var ordersMenuItem = new ToolStripMenuItem("View my orders");
+            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
+        }
+
+        private void OpenUserUpdate(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void OpenCart(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void OpenUserOrders(object sender, EventArgs e)
+        {
+            //todo
+        }
+
         private void SetDataGridViewOptions()
         {
             shopResultsGridView.Columns["Id"].Visible = false;
@@ -107,10 +158,10 @@ namespace ShopResults
             }
 
             //shopResultsGridView.Dock = DockStyle.Fill;
-                       
+
         }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Thanks!");
@@ -121,12 +172,7 @@ namespace ShopResults
 
         }
 
-        private void efood_Load(object sender, EventArgs e)
-        {
-            PopulateDataGrid();
-
-            SetDataGridViewOptions();
-        }
+        
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -175,7 +221,7 @@ namespace ShopResults
 
         }
 
-        
+
 
 
 
@@ -210,8 +256,8 @@ namespace ShopResults
             this.Enabled = enabled;
         }
 
-        
-       
+
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -227,48 +273,38 @@ namespace ShopResults
             }
         }
 
+        private void FilterDataGrid(object sender)
+        {
+            using (new CursorWait())
+            {
+                List<string> uncheckedNodes = GetUncheckedNodes(treeView1.Nodes);
+                var storeSearch = StoreNameSearchBox.Text;
+
+                //1.na MHN iparxei shop pou oles oi kathgories tou na vriskontai sthn lista twn unchecked nodes
+                //2.to keimeno tou store name search box na einai meros tou onomatos tou store
+                IEnumerable<ShopGridViewModel> bindingData = new List<ShopGridViewModel>();
+                if (!uncheckedNodes.Contains("All"))
+                    bindingData = _shops?.Where(x => (!x.Categories?.All(y => uncheckedNodes.Contains(foodCategories[y])) ?? false) && (x.ShopName.Contains(storeSearch)));
+
+                var bindingList = new SortableBindingList<ShopGridViewModel>(bindingData);
+                var dataBinding = new BindingSource(bindingList, null);
+
+                shopResultsGridView.DataSource = dataBinding;
+            }
+
+        }
+
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
-
             if (e.Action != TreeViewAction.ByMouse && e.Action != TreeViewAction.ByKeyboard) return;
-            
-
-
             CheckAllNodes(e.Node.Nodes, e.Node.Checked);
-            if (e.Node.Index > 0)
-                e.Node.Parent.Checked = e.Node.Checked;
 
-            CheckParents(e.Node);
-
-            List<string> uncheckedNodes = GetUncheckedNodes(treeView1.Nodes);
-            var storeSearch = StoreNameSearchBox.Text;
-
-
-            //1.na MHN iparxei shop pou oles oi kathgories tou na vriskontai sthn lista twn unchecked nodes
-            //2.to keimeno tou store name search box na einai meros tou onomatos tou store
-            IEnumerable<ShopGridViewModel> bindingData = new List<ShopGridViewModel>();
-            if (!uncheckedNodes.Contains("All"))
-                bindingData = _shops?.Where(x => (!x.Categories?.All(y => uncheckedNodes.Contains(foodCategories[y])) ?? false) && (x.ShopName.Contains(storeSearch)));
-            
-            
-
-            var bindingList = new SortableBindingList<ShopGridViewModel>(bindingData);
-
-            var dataBinding = new BindingSource(bindingList, null);
-
-
-            shopResultsGridView.DataSource = dataBinding;
-
+            _dispatcher.Debounce(400, x => FilterDataGrid(sender));
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void StoreNameSearchBox_KeyUp(object sender, EventArgs e)
         {
-            //_dispatcher.Debounce(24, x=> SetDataGridViewOptions());
-        }
-
-        private void StoreNameSearchBox_TextChanged(object sender, EventArgs e)
-        {
-
+            _dispatcher.Debounce(1500, x => FilterDataGrid(sender));
         }
     }
 }
