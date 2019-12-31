@@ -4,11 +4,12 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ValueModels;
+using Domain.ValueModels;
+using Domain.Infrastructure;
 
 namespace Domain.Repositories
 {
-    internal class ShopResultsRepository : SqlContextBase
+    internal class ShopRepository : SqlContextBase
     {
 
         
@@ -60,6 +61,8 @@ namespace Domain.Repositories
                                              {
                                                 Address = x.Address,
                                                 Id = x.ShopId,
+                                                Latitude = x.Latitude,
+                                                Longitude = x.Longitude,
                                                 ShopName = x.Name,
                                                 Categories = (from s in shopFoodCategories
                                                              where s.ShopId == x.ShopId
@@ -70,6 +73,72 @@ namespace Domain.Repositories
 
         }
 
+        public void Create(ShopInformation shop)
+        {
+            var dto = new Shop();
+            PropertyCopier<ShopInformation, Shop>.Copy(shop, dto);
+            var script = GetInsertScripts(dto);
+            ExecDbScripts(script);
+        }
+
+        public ShopFormViewModel Read(int shopId, int userId)
+        {
+            var shop = new Shop();
+            var Categories = new FoodItemCategories();
+            var shopCategoriesWithAliases = new ShopFoodItemCategories();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                var sql = "SELECT * FROM Shop " +
+                           "WHERE Shop.ShopId = @shopId; " +
+                           "SELECT * FROM FoodItemCategories; " +
+                           "SELECT ShopFoodItemCategories.* FROM ShopFoodItemCategories " +
+                           "INNER JOIN Shop ON Shop.ShopId= ShopFoodItemCategories.ShopId " +
+                           "INNER JOIN FoodItemCategories ON FoodItemCategories.CategoryId=ShopFoodItemCategories.CategoryId;" +
+                           "WHERE Shop.ShopId = @shopId;"; //todo + stuff 
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@shopId", shopId);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    
+
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        shop = CreateInstance<Shop>(reader);
+                    }
+
+                    reader.NextResult();
+
+                    while (reader.Read())
+                    {
+                        Categories = CreateInstance<FoodItemCategories>(reader);
+                    }
+
+                    reader.NextResult();
+
+                    while (reader.Read())
+                    {
+                        shopCategoriesWithAliases = CreateInstance<ShopFoodItemCategories>(reader);
+                    }
+
+                    reader.NextResult();
+
+                    //todo + stuff 
+
+                }
+
+
+            }
+
+
+
+
+                return new ShopFormViewModel();
+        }
 
 
         public void RecordClick(int userId, int shopId)

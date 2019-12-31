@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Domain.Context
 {
-    internal class SqlContextBase
+    internal abstract class SqlContextBase
     {
         protected readonly static string _connectionString =
             "datasource=localhost;port=3306;username=root;password=;database=efoodusers";

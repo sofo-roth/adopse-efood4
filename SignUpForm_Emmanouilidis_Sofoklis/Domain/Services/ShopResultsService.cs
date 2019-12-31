@@ -1,25 +1,22 @@
 ﻿using Domain.API;
 using Domain.Infrastructure;
 using Domain.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ValueModels;
+using Domain.ValueModels;
 
 namespace Domain.Services
 {
     public class ShopResultsService : ServiceBase
     {
 
-        ShopResultsRepository _repository;
-        GeolocationAPI _geoLocation;
+        private readonly ShopRepository _repository;
+        private readonly GeolocationAPI _geoLocation;
 
 
         public ShopResultsService() 
         {
-            _repository = new ShopResultsRepository();
+            _repository = new ShopRepository();
             _geoLocation = new GeolocationAPI(); 
 
         }

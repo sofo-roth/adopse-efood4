@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace ValueModels
+namespace Domain.ValueModels
 {
     public class ShopGridViewModel
     {
@@ -14,5 +14,16 @@ namespace ValueModels
         public double Distance { get; set; }
 
         public List<int> Categories { get; set; }
+
+        public double? Latitude { get; set; }
+
+        public double? Longitude { get; set; }
+
+        public ShopGridViewModel()
+        {
+            Latitude = null;
+            Longitude = null;
+
+        }
     }
 }

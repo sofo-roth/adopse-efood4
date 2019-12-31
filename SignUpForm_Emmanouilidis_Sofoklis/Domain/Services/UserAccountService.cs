@@ -1,4 +1,5 @@
 ﻿using Domain.AccountManager;
+using Domain.API;
 using Domain.Repositories;
 using Domain.ValueModels;
 using Microsoft.AspNet.Identity;
@@ -11,14 +12,18 @@ namespace Domain.Services
     public class UserAccountService : ServiceBase
     {
         private readonly PasswordHasher _hasher ;
-        private readonly UserAccountRepository _repository;
+        private readonly UserAccountRepository _userRepository;
+        private readonly ShopRepository _shopRepository;
+        private readonly GeolocationAPI _geoLocation;
 
-        
+
 
         public UserAccountService()
         {
             _hasher = new PasswordHasher();
-            _repository = new UserAccountRepository();
+            _userRepository = new UserAccountRepository();
+            _shopRepository = new ShopRepository();
+            _geoLocation = new GeolocationAPI();
         }
 
         public string RetrieveHash(string pwd)
@@ -39,13 +44,14 @@ namespace Domain.Services
             return verificationResult == PasswordVerificationResult.Success;
         }
 
-        public void Create(UserInformation user)
+        public void CreateUser(UserInformation user)
         {
             int id = 0;
 
             user.Passwd = RetrieveHash(user.Passwd);
+            user.isShopOwner = false;
 
-            id = _repository.Create(user);
+            id = _userRepository.Create(user);
 
             if (id <= 0)
                 throw new Exception("An unknown error occured. Registration failed.");
@@ -54,13 +60,38 @@ namespace Domain.Services
             UserIdentity.SetInstance(user);
         }
 
+        public void CreateUserShopOwner(UserInformation user, ShopInformation shop)
+        {
+            int id = 0;
+
+            user.Passwd = RetrieveHash(user.Passwd);
+            user.isShopOwner = true;
+
+            id = _userRepository.Create(user);
+
+            if (id <= 0)
+                throw new Exception("An unknown error occured. Registration failed.");
+
+            user.UserId = id;
+            UserIdentity.SetInstance(user);
+
+            shop.OwnerId = id;
+
+            var coords = _geoLocation.CalculateLatLong(shop.Address);
+            shop.Latitude = coords.Latitude;
+            shop.Longitude = coords.Longitude;
+
+            _shopRepository.Create(shop);
+
+        }
+
         public void Update(UserInformation user)
         {
             user.UserId = UserInfo.UserId;
 
-            user.Passwd = UserInfo.Passwd; 
+            user.Passwd = UserInfo.Passwd;
 
-             _repository.Update(user);
+            _userRepository.Update(user);
 
             UserIdentity.SetInstance(user);
         }
@@ -75,9 +106,14 @@ namespace Domain.Services
 
             user.Passwd = RetrieveHash(user.Passwd);
 
-            _repository.Update(user);
+            _userRepository.Update(user);
             
             UserIdentity.SetInstance(user);
+        }
+
+        public void GetUserOrders()
+        {
+            //todo return model for a grid with db info
         }
 
     }

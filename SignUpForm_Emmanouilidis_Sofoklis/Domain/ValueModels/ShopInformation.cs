@@ -1,11 +1,10 @@
-﻿using Domain.Infrastructure;
-using System;
+﻿using System;
 
-namespace Domain.DatabaseModels
+
+namespace Domain.ValueModels
 {
-    internal class Shop
+    public class ShopInformation
     {
-        [PrimaryKey]
         public int ShopId { get; set; }
 
         public int OwnerId { get; set; }
@@ -20,5 +19,13 @@ namespace Domain.DatabaseModels
         public double? Rating { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+
+        public ShopInformation()
+        {
+            Latitude = null;
+            Longitude = null;
+            LastSubscription = null;
+            Rating = null;
+        }
     }
 }

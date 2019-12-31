@@ -3,13 +3,23 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Device.Location;
-
+using ValueModels;
 
 namespace Domain.API
 {
-    class GeolocationAPI
+    internal class GeolocationAPI
     {
         private readonly static string _key = "AIzaSyDQI4hxPC1l6NSuuslUgZD3TLhKNMt7ESE";
+
+        public double CalculateDistance(string userAddress, ShopGridViewModel shop)
+        {
+            if (!shop.Latitude.HasValue && !shop.Longitude.HasValue)
+                return CalculateDistance(userAddress, shop.Address);
+
+            var userCoords = CalculateLatLong(userAddress);
+            return CalculateDistanceFromKnownCoordinates(userCoords, shop.Latitude.Value, shop.Longitude.Value);
+        }
+
 
         public double CalculateDistance(string userAddress, string shopAdress)
         {
@@ -30,11 +40,16 @@ namespace Domain.API
             return distance;
         }
         
-        public double CalculateDistanceFromKnownCoordinates(double sourceLatitude, double sourceLongitude, double destinationLatitude, double destinationLongitude)
+        public double CalculateDistanceFromKnownCoordinates(GeoCoordinate sCoord, double destinationLatitude, double destinationLongitude)
         {
-            var sCoord = new GeoCoordinate(sourceLatitude, sourceLongitude);
+            
             var dCoord = new GeoCoordinate(destinationLatitude, destinationLongitude);
             
+            return sCoord.GetDistanceTo(dCoord);
+        }
+
+        public double CalculateDistanceFromKnownCoordinates(GeoCoordinate sCoord, GeoCoordinate dCoord)
+        {
             return sCoord.GetDistanceTo(dCoord);
         }
 
