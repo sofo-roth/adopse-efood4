@@ -139,7 +139,7 @@
             this.StoreNameSearchBox.Name = "StoreNameSearchBox";
             this.StoreNameSearchBox.Size = new System.Drawing.Size(620, 20);
             this.StoreNameSearchBox.TabIndex = 5;
-            this.StoreNameSearchBox.KeyUp += new System.EventHandler(this.StoreNameSearchBox_KeyUp);
+            this.StoreNameSearchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StoreNameSearchBox_KeyUp);
             // 
             // label1
             // 

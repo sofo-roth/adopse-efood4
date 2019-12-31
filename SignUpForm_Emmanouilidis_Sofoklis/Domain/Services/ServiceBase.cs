@@ -9,9 +9,9 @@ namespace Domain.Services
 {
     public abstract class ServiceBase
     {
-        public static UserInformation UserInfo => UserIdentity.Instance;
+        public UserInformation UserInfo => UserIdentity.Instance;
 
-        public static CartCollection Cart => CartCollection.GetInstance;
+        public CartCollection Cart => CartCollection.GetInstance;
 
         private readonly RepositoryBase _repository;
 
