@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Domain.Services;
 using System.Windows.Forms;
-using ValueModels;
+
 using Domain.Infrastructure;
 using System.Linq;
+using Domain.ValueModels;
 
 namespace ShopResults
 {
@@ -14,7 +15,7 @@ namespace ShopResults
 
         private readonly DispatcherObserver _dispatcher;
 
-        private readonly ShopResultsService _service;
+        private readonly IShopResultsService _service;
 
         public Dictionary<int, string> foodCategories;
 

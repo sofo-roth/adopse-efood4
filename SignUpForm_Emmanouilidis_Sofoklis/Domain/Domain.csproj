@@ -92,15 +92,20 @@
     <Compile Include="Infrastructure and helpers\ExtensionMethods.cs" />
     <Compile Include="Infrastructure and helpers\CursorWait.cs" />
     <Compile Include="Infrastructure and helpers\DispatcherObserver.cs" />
+    <Compile Include="Infrastructure and helpers\IDataTable.cs" />
+    <Compile Include="Infrastructure and helpers\IShopFormService.cs" />
+    <Compile Include="Infrastructure and helpers\IShopResultsService.cs" />
+    <Compile Include="Infrastructure and helpers\IUserAccountService.cs" />
     <Compile Include="Infrastructure and helpers\PropertyCopier.cs" />
     <Compile Include="Infrastructure and helpers\Attributes.cs" />
     <Compile Include="Infrastructure and helpers\SortableBindingList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\OrdersRepository.cs" />
     <Compile Include="Repositories\ShopRepository.cs" />
     <Compile Include="Repositories\UserAccountRepository.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\ShopFormService.cs" />
     <Compile Include="Services\ShopResultsService.cs" />
     <Compile Include="Services\UserAccountService.cs" />
     <Compile Include="Cart\CartItem.cs" />
@@ -115,8 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ApplicationAccess.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

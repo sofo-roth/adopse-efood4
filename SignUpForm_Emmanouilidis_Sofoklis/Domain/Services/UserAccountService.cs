@@ -1,5 +1,6 @@
 ﻿using Domain.AccountManager;
 using Domain.API;
+using Domain.Infrastructure;
 using Domain.Repositories;
 using Domain.ValueModels;
 using Microsoft.AspNet.Identity;
@@ -9,7 +10,7 @@ using PasswordHasher = Domain.AccountManager.PasswordHasher;
 
 namespace Domain.Services
 {
-    public class UserAccountService : ServiceBase
+    public class UserAccountService : ServiceBase, IUserAccountService
     {
         private readonly PasswordHasher _hasher ;
         private readonly UserAccountRepository _userRepository;

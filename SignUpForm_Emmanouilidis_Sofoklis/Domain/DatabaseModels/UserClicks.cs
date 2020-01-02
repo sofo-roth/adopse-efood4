@@ -3,7 +3,7 @@ using System;
 
 namespace Domain.DatabaseModels
 {
-    internal class UserClicks
+    internal class UserClicks : IDataTable
     {
         [PrimaryKey]
         public int ClickId { get; set; }

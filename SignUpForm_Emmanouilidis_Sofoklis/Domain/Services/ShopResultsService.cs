@@ -7,7 +7,7 @@ using Domain.ValueModels;
 
 namespace Domain.Services
 {
-    public class ShopResultsService : ServiceBase
+    public class ShopResultsService : ServiceBase, IShopResultsService
     {
 
         private readonly ShopRepository _repository;

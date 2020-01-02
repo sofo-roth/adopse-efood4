@@ -3,7 +3,7 @@
 
 namespace Domain.DatabaseModels
 {
-    internal class OrderLines
+    internal class OrderLines : IDataTable
     {
         [PrimaryKey]
         public int LineId { get; set; }

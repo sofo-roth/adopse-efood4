@@ -3,7 +3,7 @@
 
 namespace Domain.DatabaseModels
 {
-    internal class Userstable
+    internal class Userstable : IDataTable
     {
         [PrimaryKey]
         public int UserId { get; set; }

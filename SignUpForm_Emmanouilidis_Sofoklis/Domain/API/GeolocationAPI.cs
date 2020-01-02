@@ -3,13 +3,15 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Device.Location;
-using ValueModels;
+
+using Domain.ValueModels;
+using System.Configuration;
 
 namespace Domain.API
 {
     internal class GeolocationAPI
     {
-        private readonly static string _key = "AIzaSyDQI4hxPC1l6NSuuslUgZD3TLhKNMt7ESE";
+        private readonly static string _key = ConfigurationManager.AppSettings["APIKey"];
 
         public double CalculateDistance(string userAddress, ShopGridViewModel shop)
         {

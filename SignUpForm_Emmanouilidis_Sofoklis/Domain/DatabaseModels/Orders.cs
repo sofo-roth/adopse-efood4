@@ -4,7 +4,7 @@ using System;
 
 namespace Domain.DatabaseModels
 {
-    internal class Orders
+    internal class Orders : IDataTable
     {
         [PrimaryKey]
         public int OrderId { get; set; }

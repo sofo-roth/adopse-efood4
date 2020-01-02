@@ -9,10 +9,13 @@ using System.Collections.Generic;
 
 namespace Domain.Repositories
 {
-    internal class RepositoryBase : SqlContextBase
+    internal sealed class OrdersRepository : SqlContextBase
     {
+        public bool CanRate(int userId, int shopId)
+        {
 
-            
+        }
+
         public void MakeOrder(IEnumerable<CartItem> items, OrderDetails ord)
         {
             var orderDto = new Orders();
@@ -70,7 +73,7 @@ namespace Domain.Repositories
         }
         
 
-        private int InsertOrder<T>(T dto, MySqlConnection connection, MySqlTransaction transaction)
+        private int InsertOrder(IDataTable dto, MySqlConnection connection, MySqlTransaction transaction)
         {
             int id = -1;
 

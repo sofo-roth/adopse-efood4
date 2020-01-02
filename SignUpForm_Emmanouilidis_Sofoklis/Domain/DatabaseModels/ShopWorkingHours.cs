@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Domain.Infrastructure;
+using System;
 
 
 namespace Domain.DatabaseModels
 {
-    internal class ShopWorkingHours
+    internal class ShopWorkingHours : IDataTable
     {
         
         public int ShopId { get; set; }

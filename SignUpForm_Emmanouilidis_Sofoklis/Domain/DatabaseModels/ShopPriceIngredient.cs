@@ -1,7 +1,9 @@
 ﻿
+using Domain.Infrastructure;
+
 namespace Domain.DatabaseModels
 {
-    internal class ShopPriceIngredient
+    internal class ShopPriceIngredient : IDataTable
     {
 
         public int IngId { get; set; }

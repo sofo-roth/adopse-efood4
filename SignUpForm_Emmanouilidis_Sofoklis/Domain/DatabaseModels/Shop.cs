@@ -3,8 +3,10 @@ using System;
 
 namespace Domain.DatabaseModels
 {
-    internal class Shop
+    internal class Shop : IDataTable
     {
+
+
         [PrimaryKey]
         public int ShopId { get; set; }
 

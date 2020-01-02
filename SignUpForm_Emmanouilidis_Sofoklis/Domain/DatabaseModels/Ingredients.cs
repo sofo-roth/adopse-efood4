@@ -2,7 +2,7 @@
 
 namespace Domain.DatabaseModels
 {
-    internal class Ingredients
+    internal class Ingredients : IDataTable
     {
         [PrimaryKey]
         public int IngId { get; set; }

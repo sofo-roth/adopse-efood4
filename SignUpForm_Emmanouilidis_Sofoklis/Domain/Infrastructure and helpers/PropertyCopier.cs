@@ -41,7 +41,7 @@ namespace Domain.Infrastructure
             }
         }
 
-        public static List<T> FromDataTableToClass<T>(DataTable dt)
+        public static List<T> FromDataTableToClass<T>(DataTable dt) where T : IDataTable
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dt.Rows)

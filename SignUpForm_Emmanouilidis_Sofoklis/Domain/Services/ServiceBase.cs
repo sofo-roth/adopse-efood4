@@ -13,24 +13,26 @@ namespace Domain.Services
 
         public CartCollection Cart => CartCollection.GetInstance;
 
-        private readonly RepositoryBase _repository;
+        private readonly OrdersRepository _repository;
 
 
         public ServiceBase()
         {
-            _repository = new RepositoryBase();
+            _repository = new OrdersRepository();
         }
 
         public void CheckOut(OrderDetails ord)
         {
             var cartItems = GetCartItems();
 
-            var cartItemsPerShop = cartItems.GroupBy(x => x.ShopId)
-                                        .Select(group => group.ToList());
 
-            foreach(var items in cartItemsPerShop)
+            var cartItemsPerShop = from b in cartItems
+                                   group b by b.ShopId into g
+                                   select g.ToList();
+
+            foreach (var items in cartItemsPerShop)
             {
-                ord.ShopId = items[0].ShopId;
+                ord.ShopId = items.FirstOrDefault().ShopId;
 
                 ord.UserId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
                 _repository.MakeOrder(items, ord);
@@ -41,6 +43,7 @@ namespace Domain.Services
         public void LogoutUser()
         {
             UserIdentity.SetInstance(new UserInformation());
+            
         }
 
         private IEnumerable<CartItem> GetCartItems()

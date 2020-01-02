@@ -6,16 +6,17 @@ using System.Reflection;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Domain.Context
 {
     internal abstract class SqlContextBase
     {
-        protected readonly static string _connectionString =
-            "datasource=localhost;port=3306;username=root;password=;database=efoodusers";
+        protected readonly static string _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+           
 
 
-        protected static string GetInsertScripts<T>(T entity)
+        protected static string GetInsertScripts<T>(T entity) where T : IDataTable
         {
 
             var entityList = new List<T>();
@@ -24,7 +25,7 @@ namespace Domain.Context
 
         }
 
-        protected static T CreateInstance<T>(MySqlDataReader reader) where T : new()
+        protected static T CreateInstance<T>(MySqlDataReader reader) where T : IDataTable,new()
         {
 
             var properties = typeof(T).GetProperties();
@@ -42,7 +43,7 @@ namespace Domain.Context
 
         }
 
-        protected static async Task<List<T>> GetAsDatabaseModel<T>() where T : new()
+        protected static async Task<List<T>> GetAsDatabaseModel<T>() where T : IDataTable,new()
         {
             var list = new List<T>();
 
@@ -157,7 +158,7 @@ namespace Domain.Context
             return results;
         }
 
-        protected static string GetInsertScripts<T>(List<T> entity)
+        protected static string GetInsertScripts<T>(List<T> entity) where T : IDataTable
         {
                   
             var names = typeof(T).Name;
@@ -188,7 +189,7 @@ namespace Domain.Context
             return query;
         }
 
-        protected static string GetUpdateScript<T>(T entity)
+        protected static string GetUpdateScript<T>(T entity) where T : IDataTable
         {
             if (typeof(IEnumerable<object>).IsAssignableFrom(typeof(T))) return string.Empty;
 
