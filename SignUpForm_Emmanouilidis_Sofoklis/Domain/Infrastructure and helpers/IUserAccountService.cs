@@ -17,6 +17,8 @@ namespace Domain.Infrastructure
 
         bool LoginUser(string userName, string password);
 
+        void SetUserInfo(UserInformation info);
+
         void GetUserOrders();
     }
 }
