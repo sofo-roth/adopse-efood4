@@ -12,7 +12,40 @@ namespace Domain.Repositories
 {
     internal sealed class ShopRepository : SqlContextBase
     {
-        
+        public void RateShop(int userId, int shopId, int score)
+        {
+            var dto = new ShopRatings
+            {
+                Rating = score,
+                ShopId = shopId,
+                UserId = userId
+            };
+
+            var script = GetInsertScripts(dto);
+            ExecDbScripts(script);
+        }
+
+        public void RateShopUpdate(int userId, int shopId, int score)
+        {
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var sql = @"UPDATE ShopRatings SET Rating=score WHERE ShopId=@shopId AND UserId=@userId"; 
+
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@shopId", shopId);
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.Parameters.AddWithValue("@score", score);
+
+                    command.ExecuteNonQuery();
+
+                }
+                connection.Close();
+            }
+        }
+
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
             foodCategories = new Dictionary<int, string>();
@@ -29,6 +62,7 @@ namespace Domain.Repositories
                                 "SELECT * FROM ShopFoodItemCategories";
                 using (var command = new MySqlCommand(sql, connection))
                 {
+
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
@@ -57,6 +91,7 @@ namespace Domain.Repositories
                     }
 
                 }
+                connection.Close();
             }
 
             var shopsDto = shops.Select(x => new ShopGridViewModel
@@ -120,24 +155,22 @@ namespace Domain.Repositories
 
                     var reader = command.ExecuteReader();
 
-                    model = MapToShopFormInfo(reader);
+                    model = ComposeToShopFormInfoEntity(reader);
 
                 }
-
+                connection.Close();
             }
 
 
                 return model;
         }
 
-        private ShopFormViewModel MapToShopFormInfo(MySqlDataReader reader)
+        private ShopFormViewModel ComposeToShopFormInfoEntity(MySqlDataReader reader)
         {
             var shop = new Shop();
             var categories = new List<FoodItemCategories>();
             var shopCategoriesWithAliases = new List<ShopFoodItemCategories>();
             var shopRating = new UserShopRatingInformation();
-            
-            
 
             while (reader.Read())
             {
@@ -173,9 +206,7 @@ namespace Domain.Repositories
             while (reader.Read())
             {
                 var userRating = CreateInstance<ShopRatings>(reader);
-
                 shopRating.Rating = userRating.Rating;
-
             }
 
             var shopCategoriesActual = new Dictionary<int,string>();

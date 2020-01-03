@@ -42,7 +42,7 @@ namespace Domain.Infrastructure
             }
         }
 
-        internal static List<T> FromDataTableToClass<T>(DataTable dt) where T : IDataTable
+        internal static List<T> MapDataTableToClass<T>(DataTable dt) where T : IDataTable
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dt.Rows)

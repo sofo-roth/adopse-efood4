@@ -4,7 +4,7 @@ using Domain.ValueModels;
 
 namespace Domain.Infrastructure
 {
-    public interface IUserCartService
+    public interface IUserCartService : IServiceBase
     {
         CartCollection Cart { get; }
 

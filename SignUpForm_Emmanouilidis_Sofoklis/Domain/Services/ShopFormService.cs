@@ -4,7 +4,7 @@ using Domain.ValueModels;
 
 namespace Domain.Services
 {
-    public class ShopFormService : ServiceBase, IShopFormService
+    public class ShopFormService : UserCartService, IShopFormService
     {
         
         private readonly OrdersRepository _ordersRepository;
@@ -26,6 +26,16 @@ namespace Domain.Services
             model.UserRating.isAllowed = canRate;
 
             return model;
+        }
+
+        public void RateShop(int shopId, int score)
+        {
+            _repository.RateShop(UserInfo.UserId, shopId, score);
+        }
+
+        public void RateShopUpdate(int shopId, int score)
+        {
+            _repository.RateShopUpdate(UserInfo.UserId, shopId, score);
         }
     }
 }

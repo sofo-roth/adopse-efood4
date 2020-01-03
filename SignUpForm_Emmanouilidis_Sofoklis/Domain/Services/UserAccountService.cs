@@ -44,12 +44,12 @@ namespace Domain.Services
             return verificationResult == PasswordVerificationResult.Success;
         }
 
-        public void CreateUser(UserInformation user)
+        public int CreateUser(UserInformation user)
         {
             int id = 0;
 
             user.Passwd = RetrieveHash(user.Passwd);
-            user.isShopOwner = false;
+            
 
             id = _userRepository.Create(user);
 
@@ -58,22 +58,14 @@ namespace Domain.Services
 
             user.UserId = id;
             UserIdentity.SetInstance(user);
+
+            return id;
         }
 
-        public void CreateUserShopOwner(UserInformation user, ShopInformation shop)
+        public int CreateUserShopOwner(UserInformation user, ShopInformation shop)
         {
-            int id = 0;
-
-            user.Passwd = RetrieveHash(user.Passwd);
             user.isShopOwner = true;
-
-            id = _userRepository.Create(user);
-
-            if (id <= 0)
-                throw new Exception("An unknown error occured. Registration failed.");
-
-            user.UserId = id;
-            UserIdentity.SetInstance(user);
+            var id = CreateUser(user);
 
             shop.OwnerId = id;
 
@@ -82,6 +74,8 @@ namespace Domain.Services
             shop.Longitude = coords.Longitude;
 
             _repository.Create(shop);
+
+            return id;
 
         }
 
@@ -109,6 +103,17 @@ namespace Domain.Services
             _userRepository.Update(user);
             
             UserIdentity.SetInstance(user);
+        }
+
+        public bool LoginUser(string userName, string password)
+        {
+            var user = _userRepository.ReadUser(userName);
+
+            if (!VerifyUserPassword(password, user.Passwd)) return false;
+
+            UserIdentity.SetInstance(user);
+
+            return true;
         }
 
         public void GetUserOrders()

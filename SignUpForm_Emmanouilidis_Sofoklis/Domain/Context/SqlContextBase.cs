@@ -13,18 +13,10 @@ namespace Domain.Context
     internal abstract class SqlContextBase
     {
         protected readonly static string _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-        
 
-        protected static string GetInsertScripts<T>(T entity) where T : IDataTable
-        {
 
-            var entityList = new List<T>
-            {
-                entity
-            };
-            return GetInsertScripts(entityList);
+        #region data mapping methods
 
-        }
 
         protected static T CreateInstance<T>(MySqlDataReader reader) where T : IDataTable,new()
         {
@@ -122,6 +114,7 @@ namespace Domain.Context
             return results;
         }
 
+
         protected static Dictionary<string, DataTable> GetAsDataTablesGeneric(params string[] tables)
         {
             var results = new Dictionary<string, DataTable>();
@@ -157,6 +150,20 @@ namespace Domain.Context
 
             }
             return results;
+        }
+
+        #endregion
+
+
+        #region script generator methods
+
+        protected static string GetInsertScripts<T>(T entity) where T : IDataTable
+        {
+            var entityList = new List<T>
+            {
+                entity
+            };
+            return GetInsertScripts(entityList);
         }
 
         protected static string GetInsertScripts<T>(List<T> entity) where T : IDataTable
@@ -218,6 +225,8 @@ namespace Domain.Context
             return query;
         }
 
+        #endregion
+
         protected virtual List<int> ExecDbScripts(IEnumerable<string> sqlScripts)
         {
             var idCollection = new List<int>();
@@ -262,11 +271,15 @@ namespace Domain.Context
 
         protected virtual int ExecDbScripts(string sqlScript)
         {
+            #pragma warning disable IDE0028 
             var scriptsCollection = new List<string>();
+
             scriptsCollection.Add(sqlScript);
             
             var idCollection = ExecDbScripts(scriptsCollection);
             return idCollection.Count == 1 ? idCollection[0] : -1;
+
+            #pragma warning restore IDE0028
 
         }
 

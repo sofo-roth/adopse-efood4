@@ -22,7 +22,7 @@ namespace Domain.Services
         {
             var dto = _repository.Read(address, ref foodCategories);
             
-            dto.Update(x => x.Distance = _geoLocation.CalculateDistance(address, x.Address));
+            dto.Update(x => x.Distance = _geoLocation.CalculateDistance(address, x)); 
 
             return dto.Where(x => x.Distance < 5000);
         }
@@ -32,6 +32,7 @@ namespace Domain.Services
             _repository.RecordClick(UserInfo.UserId, shopId);
         }
 
+        
 
     }
 }

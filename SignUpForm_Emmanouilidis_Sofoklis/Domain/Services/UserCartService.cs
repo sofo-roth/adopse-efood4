@@ -14,6 +14,9 @@ namespace Domain.Services
 
         public CartCollection Cart => CartCollection.GetInstance;
 
+
+        public UserCartService() : base() { }
+
         public virtual void CheckOut(OrderDetails ord)
         {
             var cartItems = GetCartItems();

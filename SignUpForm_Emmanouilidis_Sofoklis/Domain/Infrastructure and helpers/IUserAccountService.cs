@@ -5,13 +5,17 @@ namespace Domain.Infrastructure
 {
     public interface IUserAccountService : IServiceBase
     {
-        void CreateUser(UserInformation user);
+        int CreateUser(UserInformation user);
 
-        void CreateUserShopOwner(UserInformation user, ShopInformation shop);
+        int CreateUserShopOwner(UserInformation user, ShopInformation shop);
 
         void Update(UserInformation user);
 
         void UpdateWithNewPassword(UserInformation user, string oldPassword);
+
+        bool VerifyUserPassword(string providedPassword, string hashedPassword);
+
+        bool LoginUser(string userName, string password);
 
         void GetUserOrders();
     }

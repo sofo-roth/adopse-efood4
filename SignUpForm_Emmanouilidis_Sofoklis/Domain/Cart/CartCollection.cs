@@ -35,7 +35,14 @@ namespace Domain.Cart
         public void Add(CartItem item)
         {
             _items.Add(item);
+            
         }
+
+        public void RemoveAt(int index)
+        {
+            _items.RemoveAt(index);
+        }
+
 
         public int Count()
         {

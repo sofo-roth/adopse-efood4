@@ -3,7 +3,7 @@
 
 namespace Domain.Infrastructure
 {
-    public interface IShopFormService : IServiceBase
+    public interface IShopFormService : IUserCartService
     {
         ShopFormViewModel Read(int shopId);
     }
