@@ -1,0 +1,38 @@
+F:\New App\Fivestar\Fivestar\bin\Debug\Fivestar.exe.config
+F:\New App\Fivestar\Fivestar\bin\Debug\Fivestar.exe
+F:\New App\Fivestar\Fivestar\bin\Debug\Fivestar.pdb
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.csprojResolveAssemblyReference.cache
+F:\New App\Fivestar\Fivestar\obj\Debug\MainWindow.g.cs
+F:\New App\Fivestar\Fivestar\obj\Debug\Rating.g.cs
+F:\New App\Fivestar\Fivestar\obj\Debug\App.g.cs
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar_MarkupCompile.cache
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar_MarkupCompile.lref
+F:\New App\Fivestar\Fivestar\obj\Debug\MainWindow.baml
+F:\New App\Fivestar\Fivestar\obj\Debug\Rating.baml
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.g.resources
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.Properties.Resources.resources
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.csproj.GenerateResource.Cache
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.csproj.CoreCompileInputs.cache
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.exe
+F:\New App\Fivestar\Fivestar\obj\Debug\Fivestar.pdb
+F:\New App\Fivestar\Fivestar\obj\Debug\App.baml
+F:\New App\Fivestar\Fivestar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\bin\Debug\Fivestar.exe.config
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\bin\Debug\Fivestar.exe
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\bin\Debug\Fivestar.pdb
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.csprojAssemblyReference.cache
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\MainWindow.g.cs
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Rating.g.cs
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\App.g.cs
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar_MarkupCompile.cache
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar_MarkupCompile.lref
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\App.baml
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\MainWindow.baml
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Rating.baml
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.g.resources
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.Properties.Resources.resources
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.csproj.GenerateResource.cache
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.csproj.CoreCompileInputs.cache
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.exe
+C:\Users\Athina\Desktop\FiveStarRating-Control-C-wpf-master\FiveStarRating-Control-C-wpf-master\Fivestar\obj\Debug\Fivestar.pdb
