@@ -40,7 +40,7 @@ namespace ShopResults
 
         }
 
-        private void efood_Load(object sender, EventArgs e)
+        private void Efood_Load(object sender, EventArgs e)
         {
             FetchData();
 
@@ -163,45 +163,17 @@ namespace ShopResults
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Thanks!");
-        }
-
-        private void helloWorldLabel_Click(object sender, EventArgs e)
-        {
-
-        }
 
         
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void shopResultsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void ShopResultsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             shopResultsGridView.Rows[0].Selected = false;
         }
 
 
-        private void shopClicked(object sender, DataGridViewCellEventArgs e)
+        private void ShopClicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
@@ -212,17 +184,7 @@ namespace ShopResults
             MessageBox.Show("shop id selected: " + id); //var storeform = new StoreForm(id);
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void shopResultsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
+        
 
 
 
@@ -252,18 +214,12 @@ namespace ShopResults
             return uncheckedNodes;
         }
 
-        private void enableControls(bool enabled)
+        private void EnableControls(bool enabled)
         {
             this.Enabled = enabled;
         }
 
 
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void CheckParents(TreeNode node)
         {
@@ -295,7 +251,7 @@ namespace ShopResults
 
         }
 
-        private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Action != TreeViewAction.ByMouse && e.Action != TreeViewAction.ByKeyboard) return;
             CheckAllNodes(e.Node.Nodes, e.Node.Checked);

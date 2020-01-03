@@ -19,7 +19,7 @@
 
         public UserInformation Clone()
         {
-           return (UserInformation)MemberwiseClone();
+           return MemberwiseClone() as UserInformation;
         }
     }
 }

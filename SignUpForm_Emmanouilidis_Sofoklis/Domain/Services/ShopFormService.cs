@@ -6,12 +6,12 @@ namespace Domain.Services
 {
     public class ShopFormService : ServiceBase, IShopFormService
     {
-        private readonly ShopRepository _shopRepository;
+        
         private readonly OrdersRepository _ordersRepository;
 
-        public ShopFormService()
+        public ShopFormService() : base()
         {
-            _shopRepository = new ShopRepository(); ;
+            
             _ordersRepository = new OrdersRepository();
         }
 
@@ -21,7 +21,7 @@ namespace Domain.Services
         {
             var canRate = _ordersRepository.CanRate(UserInfo.UserId, shopId);
 
-            var model = _shopRepository.Read(UserInfo.UserId, shopId);
+            var model = _repository.Read(UserInfo.UserId, shopId);
 
             model.UserRating.isAllowed = canRate;
 

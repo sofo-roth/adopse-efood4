@@ -19,6 +19,7 @@ namespace Domain.Infrastructure
             {
                 foreach (var destinationProperty in destinationProperties)
                 {
+
                     if (sourceProperty.Name == destinationProperty.Name && sourceProperty.PropertyType == destinationProperty.PropertyType)
                     {
                         destinationProperty.SetValue(destination, sourceProperty.GetValue(source));
@@ -41,7 +42,7 @@ namespace Domain.Infrastructure
             }
         }
 
-        public static List<T> FromDataTableToClass<T>(DataTable dt) where T : IDataTable
+        internal static List<T> FromDataTableToClass<T>(DataTable dt) where T : IDataTable
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dt.Rows)
@@ -63,7 +64,7 @@ namespace Domain.Infrastructure
                 {
                     if (pro.Name == column.ColumnName)
                     {
-                        var value = dr[column.ColumnName] == DBNull.Value ? null : dr[column.ColumnName]; 
+                        var value = dr[column.ColumnName] == DBNull.Value ? default(T) : dr[column.ColumnName]; 
                         pro.SetValue(obj, value, null);
                     }                        
                     else

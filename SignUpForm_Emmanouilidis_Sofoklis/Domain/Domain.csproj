@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -93,9 +95,11 @@
     <Compile Include="Infrastructure and helpers\CursorWait.cs" />
     <Compile Include="Infrastructure and helpers\DispatcherObserver.cs" />
     <Compile Include="Infrastructure and helpers\IDataTable.cs" />
+    <Compile Include="Infrastructure and helpers\IServiceBase.cs" />
     <Compile Include="Infrastructure and helpers\IShopFormService.cs" />
     <Compile Include="Infrastructure and helpers\IShopResultsService.cs" />
     <Compile Include="Infrastructure and helpers\IUserAccountService.cs" />
+    <Compile Include="Infrastructure and helpers\IUserCartService.cs" />
     <Compile Include="Infrastructure and helpers\PropertyCopier.cs" />
     <Compile Include="Infrastructure and helpers\Attributes.cs" />
     <Compile Include="Infrastructure and helpers\SortableBindingList.cs" />
@@ -110,6 +114,7 @@
     <Compile Include="Services\UserAccountService.cs" />
     <Compile Include="Cart\CartItem.cs" />
     <Compile Include="Cart\CartItemIngredient.cs" />
+    <Compile Include="Services\UserCartService.cs" />
     <Compile Include="ValueModels\FoodItemIngredientViewModel.cs" />
     <Compile Include="ValueModels\FoodItemViewModel.cs" />
     <Compile Include="ValueModels\OrderDetails.cs" />

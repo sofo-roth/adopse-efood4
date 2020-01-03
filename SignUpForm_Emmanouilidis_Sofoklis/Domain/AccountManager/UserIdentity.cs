@@ -14,7 +14,10 @@ namespace Domain.AccountManager
         private UserIdentity()
         {
 
-            UserInfo =  new UserInformation(); 
+            UserInfo = new UserInformation
+            {
+                UserId = -1
+            };
         }
 
         
@@ -34,11 +37,8 @@ namespace Domain.AccountManager
                     lock (_padlock)
                     {
                         if (_singletonUser == null)
-                        {
                             _singletonUser = new UserIdentity();
-                            _singletonUser.UserInfo.UserId = -1;
-                        }
-                                                
+                        
                     }
                 }
                 return _singletonUser.UserInfo.Clone();

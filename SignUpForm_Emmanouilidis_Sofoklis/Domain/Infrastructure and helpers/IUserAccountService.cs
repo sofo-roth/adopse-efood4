@@ -3,7 +3,7 @@
 
 namespace Domain.Infrastructure
 {
-    public interface IUserAccountService
+    public interface IUserAccountService : IServiceBase
     {
         void CreateUser(UserInformation user);
 

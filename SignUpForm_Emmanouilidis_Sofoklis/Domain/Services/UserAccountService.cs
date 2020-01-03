@@ -14,16 +14,15 @@ namespace Domain.Services
     {
         private readonly PasswordHasher _hasher ;
         private readonly UserAccountRepository _userRepository;
-        private readonly ShopRepository _shopRepository;
+        
         private readonly GeolocationAPI _geoLocation;
 
 
 
-        public UserAccountService()
+        public UserAccountService() : base()
         {
             _hasher = new PasswordHasher();
             _userRepository = new UserAccountRepository();
-            _shopRepository = new ShopRepository();
             _geoLocation = new GeolocationAPI();
         }
 
@@ -82,7 +81,7 @@ namespace Domain.Services
             shop.Latitude = coords.Latitude;
             shop.Longitude = coords.Longitude;
 
-            _shopRepository.Create(shop);
+            _repository.Create(shop);
 
         }
 

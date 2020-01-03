@@ -18,7 +18,7 @@ namespace Domain.Infrastructure
 
         // function that refereshes the contents
         // of the base classes collection of elements
-        Action<SortableBindingList<T>, List<T>>
+        readonly Action<SortableBindingList<T>, List<T>>
                        populateBaseList = (a, b) => a.ResetItems(b);
 
         // a cache of functions that perform the sorting
@@ -56,7 +56,7 @@ namespace Domain.Infrastructure
 
             _sortProperty = prop;
 
-            var orderByMethodName = _sortDirection ==
+            var orderByMethodName = _sortDirection is
                 ListSortDirection.Ascending ? "OrderBy" : "OrderByDescending";
             var cacheKey = typeof(T).GUID + prop.Name + orderByMethodName;
 
@@ -67,7 +67,7 @@ namespace Domain.Infrastructure
 
             ResetItems(cachedOrderByExpressions[cacheKey](_originalList).ToList());
             ResetBindings();
-            _sortDirection = _sortDirection == ListSortDirection.Ascending ?
+            _sortDirection = _sortDirection is ListSortDirection.Ascending ?
                             ListSortDirection.Descending : ListSortDirection.Ascending;
         }
 

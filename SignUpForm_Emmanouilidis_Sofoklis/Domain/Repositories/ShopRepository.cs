@@ -22,7 +22,7 @@ namespace Domain.Repositories
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var sql = "SELECT * FROM FoodItemCategories;" +
+                var sql = @"SELECT * FROM FoodItemCategories;" +
 
                                 "SELECT * FROM Shop WHERE IsActive = 1; " +
 
@@ -91,7 +91,7 @@ namespace Domain.Repositories
             {
                 connection.Open();
 
-                var sql = "SELECT * FROM Shop " +
+                var sql = @"SELECT * FROM Shop " +
                            "WHERE Shop.ShopId = @shopId; " +
 
                            "SELECT * FROM ShopPriceIngredient " +
@@ -111,7 +111,7 @@ namespace Domain.Repositories
                            "SELECT * FROM ShopRatings " +
                            "WHERE ShopId = @shopId AND UserId = @userId; ";
 
-
+                
                 using (var command = new MySqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@shopId", shopId);

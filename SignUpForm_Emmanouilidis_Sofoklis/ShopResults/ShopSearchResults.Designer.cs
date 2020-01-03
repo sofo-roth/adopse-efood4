@@ -68,9 +68,9 @@
             this.shopResultsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.shopResultsGridView.Size = new System.Drawing.Size(620, 499);
             this.shopResultsGridView.TabIndex = 2;
-            this.shopResultsGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopClicked);
-            this.shopResultsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopResultsGridView_CellContentClick);
-            this.shopResultsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.shopResultsGridView_DataBindingComplete);
+            this.shopResultsGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShopClicked);
+            //this.shopResultsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shopResultsGridView_CellContentClick);
+            this.shopResultsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ShopResultsGridView_DataBindingComplete);
             // 
             // menuStrip1
             // 
@@ -131,7 +131,7 @@
             treeNode5});
             this.treeView1.Size = new System.Drawing.Size(170, 499);
             this.treeView1.TabIndex = 4;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1_AfterCheck);
             // 
             // StoreNameSearchBox
             // 
@@ -177,7 +177,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ShopResults";
             this.Text = "FoodE";
-            this.Load += new System.EventHandler(this.efood_Load);
+            this.Load += new System.EventHandler(this.Efood_Load);
             ((System.ComponentModel.ISupportInitialize)(this.shopResultsGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -13,14 +13,15 @@ namespace Domain.Context
     internal abstract class SqlContextBase
     {
         protected readonly static string _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-           
-
+        
 
         protected static string GetInsertScripts<T>(T entity) where T : IDataTable
         {
 
-            var entityList = new List<T>();
-            entityList.Add(entity);
+            var entityList = new List<T>
+            {
+                entity
+            };
             return GetInsertScripts(entityList);
 
         }
@@ -217,7 +218,7 @@ namespace Domain.Context
             return query;
         }
 
-        protected List<int> ExecDbScripts(IEnumerable<string> sqlScripts)
+        protected virtual List<int> ExecDbScripts(IEnumerable<string> sqlScripts)
         {
             var idCollection = new List<int>();
 
@@ -259,7 +260,7 @@ namespace Domain.Context
             return idCollection;
         }
 
-        protected int ExecDbScripts(string sqlScript)
+        protected virtual int ExecDbScripts(string sqlScript)
         {
             var scriptsCollection = new List<string>();
             scriptsCollection.Add(sqlScript);
@@ -269,19 +270,22 @@ namespace Domain.Context
 
         }
 
-        private static string GetValueString<T>(T propertyValue)
+        private static string GetValueString(object propertyValue)
         {
-            if (propertyValue == null) return "NULL";
-
-            var propertyType = propertyValue.GetType();
-            if (propertyType == typeof(string)) return "'" + MySqlHelper.EscapeString(propertyValue as string) + "'";
-            if (propertyType == typeof(DateTime))
+            switch (propertyValue)
             {
-                var date = DateTime.Parse(propertyValue.ToString());
-                return "'" + GetUTCString(date) + "'";
-            }
+                case null:
+                    return "NULL";
+                case string str when str.Length>0:
+                    return "'" + MySqlHelper.EscapeString(str) + "'";
+                case DateTime date:
+                    return "'" + GetUTCString(date) + "'";
 
-            return propertyValue.ToString();
+                default:
+                    return propertyValue.ToString();
+
+            }
+            
         }
 
         private static string GetUTCString(DateTime date)
