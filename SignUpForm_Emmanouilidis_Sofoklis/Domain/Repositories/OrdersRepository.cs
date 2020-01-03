@@ -13,7 +13,29 @@ namespace Domain.Repositories
     {
         public bool CanRate(int userId, int shopId)
         {
+            var canRate = false;
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
 
+                var sql = "SELECT * FROM Orders WHERE ShopId = @shopId AND UserId = @userId; ";
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@shopId", shopId);
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        canRate = true;
+                        break;
+                    }
+
+                }
+
+                return canRate;
+            }
         }
 
         public void MakeOrder(IEnumerable<CartItem> items, OrderDetails ord)

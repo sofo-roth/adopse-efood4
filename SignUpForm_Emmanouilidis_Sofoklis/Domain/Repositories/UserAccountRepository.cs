@@ -5,7 +5,7 @@ using Domain.ValueModels;
 
 namespace Domain.Repositories
 {
-    class UserAccountRepository : SqlContextBase
+    internal sealed class UserAccountRepository : SqlContextBase
     {
         
         public int Create(UserInformation user)

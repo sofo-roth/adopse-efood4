@@ -6,13 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.ValueModels;
 using Domain.Infrastructure;
-using System.Collections.ObjectModel;
+
 
 namespace Domain.Repositories
 {
-    internal class ShopRepository : SqlContextBase
+    internal sealed class ShopRepository : SqlContextBase
     {
-
         
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
@@ -105,7 +104,7 @@ namespace Domain.Repositories
                            "INNER JOIN FoodItem ON ShopPriceFoodItem.FoodItemId=FoodItem.ItemId; "  +
 
                            "SELECT * FROM FoodItemCategories; " +
-                           //
+                           
                            "SELECT ShopFoodItemCategories.* FROM ShopFoodItemCategories " +
                            "WHERE ShopFoodItemCategories.ShopId = @shopId; " +
 
@@ -137,8 +136,8 @@ namespace Domain.Repositories
             var categories = new List<FoodItemCategories>();
             var shopCategoriesWithAliases = new List<ShopFoodItemCategories>();
             var shopRating = new UserShopRatingInformation();
-            var ingredients = new List<FoodItemIngredientViewModel>();
-            var foodItems = new List<FoodItemViewModel>();
+            
+            
 
             while (reader.Read())
             {
@@ -147,36 +146,11 @@ namespace Domain.Repositories
 
             reader.NextResult();
 
-            while (reader.Read())
-            {
-                var ingredient = new FoodItemIngredientViewModel
-                {
-                    IName = reader.GetString("IName"),
-                    IngId = reader.GetInt32("IngId"),
-                    Price = reader.GetDouble("Price"),
-                    CategoryId = reader.GetInt32("CategoryId"),
-                };
-
-                ingredients.Add(ingredient);
-            }
+            var ingredients = GetIngredients(reader);
 
             reader.NextResult();
 
-            while (reader.Read())
-            {
-
-                var categoryId = reader.GetInt32("CategoryId");
-                var foodItem = new FoodItemViewModel
-                {
-                    FoodIngredients = ingredients.Where(x => x.CategoryId == categoryId).ToList(),
-                    CategoryId = categoryId,
-                    ItemId = reader.GetInt32("ItemId"),
-                    ItemName = reader.GetString("ItemName"),
-                    Price = reader.GetDouble("Price")
-                };
-
-                foodItems.Add(foodItem);
-            }
+            var foodItems = GetFoodItems(reader,ingredients);
 
             reader.NextResult();
 
@@ -216,9 +190,43 @@ namespace Domain.Repositories
                 shopCategoriesActual.Add(category.CategoryId,category.FoodType);
             }
 
-            return Compose(shop, shopCategoriesActual, foodItems, shopRating);
+            return Compose(shop, shopCategoriesActual, foodItems.ToList(), shopRating);
         }
 
+        private IEnumerable<FoodItemIngredientViewModel> GetIngredients(MySqlDataReader reader)
+        {
+            while (reader.Read())
+            {
+                var ingredient = new FoodItemIngredientViewModel
+                {
+                    IName = reader.GetString("IName"),
+                    IngId = reader.GetInt32("IngId"),
+                    Price = reader.GetDouble("Price"),
+                    CategoryId = reader.GetInt32("CategoryId"),
+                };
+
+                yield return ingredient;
+            }
+        }
+
+        private IEnumerable<FoodItemViewModel> GetFoodItems(MySqlDataReader reader, IEnumerable<FoodItemIngredientViewModel> ingredients)
+        {
+            while (reader.Read())
+            {
+
+                var categoryId = reader.GetInt32("CategoryId");
+                var foodItem = new FoodItemViewModel
+                {
+                    FoodIngredients = ingredients.Where(x => x.CategoryId == categoryId).ToList(),
+                    CategoryId = categoryId,
+                    ItemId = reader.GetInt32("ItemId"),
+                    ItemName = reader.GetString("ItemName"),
+                    Price = reader.GetDouble("Price")
+                };
+
+                yield return foodItem;
+            }
+        }
 
         private ShopFormViewModel Compose(Shop shop, Dictionary<int,string> categories, List<FoodItemViewModel> foodItems, UserShopRatingInformation rating)
         {
