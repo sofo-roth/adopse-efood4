@@ -18,13 +18,13 @@ namespace Domain.Context
         #region data mapping methods
 
 
-        protected static T CreateInstance<T>(MySqlDataReader reader) where T : IDataTable,new()
+        protected static T CreateInstance<T>(MySqlDataReader reader) where T : IDataTable, new()
         {
 
             var properties = typeof(T).GetProperties();
             var dto = new T();
 
-            foreach(var property in properties)
+            foreach (var property in properties)
             {
                 var value = GetDtoValue(reader[property.Name]);
                 var propertyType = property.GetType();
@@ -36,8 +36,9 @@ namespace Domain.Context
 
         }
 
-        protected static async Task<List<T>> GetAsDatabaseModel<T>() where T : IDataTable,new()
+        protected static async Task<List<T>> GetAllAsDatabaseModel<T>() where T : IDataTable, new()
         {
+
             var list = new List<T>();
 
             var properties = typeof(T).GetProperties();
@@ -73,18 +74,21 @@ namespace Domain.Context
         }
 
 
-        protected static Dictionary<string, object> GetAsDatabaseModelsGeneric(params Type[] tabletypes)
+        protected static Dictionary<Type, object> GetAsDatabaseModelsGeneric(params Type[] tabletypes)
         {
-            var results = new Dictionary<string, object>();
+            var results = new Dictionary<Type, object>();
             using (var connection = new MySqlConnection(_connectionString))
             {
                 try
                 {
+                    connection.Open();
                     foreach (var tabletype in tabletypes)
                         using (var command = new MySqlCommand($"SELECT * FROM {tabletype.Name}", connection))
                         {
-                            connection.Open();
+
                             var dto = Activator.CreateInstance(tabletype);
+                            if (!IsDatabaseModelEntity(dto)) continue;
+
                             MySqlDataReader reader = command.ExecuteReader();
                             while (reader.Read())
                             {
@@ -96,7 +100,7 @@ namespace Domain.Context
                                 }
                             }
 
-                            results.Add(tabletype.Name, dto);
+                            results.Add(tabletype, dto);
                         }
 
                 }
@@ -112,6 +116,13 @@ namespace Domain.Context
 
             }
             return results;
+        }
+
+        protected static Dictionary<string, DataTable> GetAsDataTablesGeneric(params Type[] tables)
+        {
+            var names = tables.Select(x => x.Name).ToArray();
+
+            return GetAsDataTablesGeneric(names);
         }
 
 
@@ -157,7 +168,7 @@ namespace Domain.Context
 
         #region script generator methods
 
-        protected static string GetInsertScripts<T>(T entity) where T : IDataTable
+        protected static string GetInsertScripts<T>(T entity)
         {
             var entityList = new List<T>
             {
@@ -166,9 +177,10 @@ namespace Domain.Context
             return GetInsertScripts(entityList);
         }
 
-        protected static string GetInsertScripts<T>(List<T> entity) where T : IDataTable
+        protected static string GetInsertScripts<T>(List<T> entity)
         {
-                  
+            if (!IsDatabaseModelEntity(entity.FirstOrDefault())) return null;
+
             var names = typeof(T).Name;
             var values = "VALUES ";
 
@@ -197,9 +209,11 @@ namespace Domain.Context
             return query;
         }
 
-        protected static string GetUpdateScript<T>(T entity) where T : IDataTable
+        protected static string GetUpdateScript<T>(T entity)
         {
-            if (typeof(IEnumerable<object>).IsAssignableFrom(typeof(T))) return string.Empty;
+
+            if (typeof(IEnumerable<object>).IsAssignableFrom(typeof(T))) return null;
+            if (!IsDatabaseModelEntity(entity)) return null;
 
             var assignablePropertyCollection = typeof(T).GetProperties()
                 .Where(x => x.CanWrite && !Attribute.IsDefined(x, typeof(PrimaryKey)));
@@ -271,15 +285,15 @@ namespace Domain.Context
 
         protected virtual int ExecDbScripts(string sqlScript)
         {
-            #pragma warning disable IDE0028 
+#pragma warning disable IDE0028
             var scriptsCollection = new List<string>();
 
             scriptsCollection.Add(sqlScript);
-            
-            var idCollection = ExecDbScripts(scriptsCollection);
-            return idCollection.Count == 1 ? idCollection[0] : -1;
 
-            #pragma warning restore IDE0028
+            var idCollection = ExecDbScripts(scriptsCollection);
+            return idCollection.FirstOrDefault();
+
+#pragma warning restore IDE0028
 
         }
 
@@ -289,7 +303,7 @@ namespace Domain.Context
             {
                 case null:
                     return "NULL";
-                case string str when str.Length>0:
+                case string str when str.Length > 0:
                     return "'" + MySqlHelper.EscapeString(str) + "'";
                 case DateTime date:
                     return "'" + GetUTCString(date) + "'";
@@ -298,7 +312,12 @@ namespace Domain.Context
                     return propertyValue.ToString();
 
             }
-            
+
+        }
+
+        private static bool IsDatabaseModelEntity<T>(T entity)
+        {
+            return entity is IDataTable;
         }
 
         private static string GetUTCString(DateTime date)

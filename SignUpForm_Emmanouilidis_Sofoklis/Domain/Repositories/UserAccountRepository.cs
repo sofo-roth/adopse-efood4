@@ -12,7 +12,7 @@ namespace Domain.Repositories
 
         public int Create(UserInformation user)
         {
-            if (checkIfExists(user.Username)) throw new System.Exception("Username already exists");
+            if (CheckIfExists(user.Username)) throw new System.Exception("Username already exists");
 
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
@@ -68,7 +68,7 @@ namespace Domain.Repositories
             return user;
         }
 
-        private bool checkIfExists(string username)
+        private bool CheckIfExists(string username)
         {
             var user = GetUserInfo(username);
 

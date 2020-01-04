@@ -19,5 +19,8 @@ namespace Domain.DatabaseModels
         public DateTime OrderTime { get; set; }
         public bool Delivered { get; set; }
         public bool Canceled { get; set; }
+
+        public double FinalPrice { get; set; }
+
     }
 }

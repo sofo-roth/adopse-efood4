@@ -56,7 +56,7 @@ namespace Domain.Infrastructure
 
             _sortProperty = prop;
 
-            var orderByMethodName = _sortDirection is
+            var orderByMethodName = _sortDirection ==
                 ListSortDirection.Ascending ? "OrderBy" : "OrderByDescending";
             var cacheKey = typeof(T).GUID + prop.Name + orderByMethodName;
 
@@ -67,7 +67,7 @@ namespace Domain.Infrastructure
 
             ResetItems(cachedOrderByExpressions[cacheKey](_originalList).ToList());
             ResetBindings();
-            _sortDirection = _sortDirection is ListSortDirection.Ascending ?
+            _sortDirection = _sortDirection == ListSortDirection.Ascending ?
                             ListSortDirection.Descending : ListSortDirection.Ascending;
         }
 

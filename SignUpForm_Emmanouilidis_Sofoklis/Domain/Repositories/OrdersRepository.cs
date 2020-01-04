@@ -5,7 +5,7 @@ using Domain.ValueModels;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Domain.Repositories
 {
@@ -18,7 +18,7 @@ namespace Domain.Repositories
             {
                 connection.Open();
 
-                var sql = "SELECT * FROM Orders WHERE ShopId = @shopId AND UserId = @userId; ";
+                var sql = "SELECT COUNT(*) FROM Orders WHERE ShopId = @shopId AND UserId = @userId; ";
                 using (var command = new MySqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@shopId", shopId);
@@ -38,9 +38,60 @@ namespace Domain.Repositories
             }
         }
 
+        public List<OrderDetails> Read(int userId)
+        {
+            
+            var orders = new List<OrderDetails>();
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                var sql = @"SELECT Orders.UserId,Orders.OrderId, Orders.ShopId, Orders.UserAddress, Orders.Comments, Orders.OrderTime, Orders.Delivered, Orders.Canceled, Orders.FinalPrice, Shop.Name as shopName" +
+                            "FROM Orders WHERE Orders.UserId = @userId AND Orders.Delivered=1 AND Orders.Canceled=0 " +
+                            "INNER JOIN Shop on Shop.ShopId=Orders.ShopId";
+
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    var reader = command.ExecuteReader();
+
+                    orders = GetOrders(reader).ToList();
+
+                }
+
+               
+            }
+            return orders;
+        }
+
+        public List<OrderDetails> ReadLines(int orderId)
+        {
+            //todo implement this method
+            throw new NotImplementedException();
+            var orders = new List<OrderDetails>();
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                var sql = @"SELECT * FROM Orders WHERE Orders.ShopId = @orderId AND UserId = @userId " +
+                            "INNER JOIN Shop on Shop.ShopId=Orders.ShopId";
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@orderId", orderId);
+
+                }
+
+
+            }
+            return orders;
+        }
+
+
         public void MakeOrder(IEnumerable<CartItem> items, OrderDetails ord)
         {
             var orderDto = new Orders();
+            
 
             PropertyCopier<OrderDetails, Orders>.Copy(ord, orderDto);
 
@@ -94,8 +145,31 @@ namespace Domain.Repositories
             }
         }
         
+        private IEnumerable<OrderDetails> GetOrders(MySqlDataReader reader)
+        {
+            while (reader.Read())
+            {
+                var dto = CreateInstance<Orders>(reader);
 
-        private int InsertOrder(IDataTable dto, MySqlConnection connection, MySqlTransaction transaction)
+                var model = new OrderDetails();
+
+                PropertyCopier<Orders, OrderDetails>.Copy(dto, model);
+
+                model.ShopName = reader.GetString("shopName");
+
+                yield return model;
+            }
+        }
+
+        private IEnumerable<OrderLines> GetOrderLines(MySqlDataReader reader)
+        {
+            while (reader.Read())
+            {
+                yield return CreateInstance<OrderLines>(reader);
+            }
+        }
+
+        private int InsertOrder<T>(T dto, MySqlConnection connection, MySqlTransaction transaction)
         {
             int id = -1;
 

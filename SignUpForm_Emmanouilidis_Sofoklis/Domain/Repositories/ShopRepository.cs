@@ -46,6 +46,8 @@ namespace Domain.Repositories
             }
         }
 
+        
+
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
             foodCategories = new Dictionary<int, string>();
@@ -118,7 +120,7 @@ namespace Domain.Repositories
             ExecDbScripts(script);
         }
 
-        public ShopFormViewModel Read(int userId, int shopId)
+        public ShopFormViewModel Read(int userId, int shopId, bool allowRating)
         {
             ShopFormViewModel model;
 
@@ -155,7 +157,7 @@ namespace Domain.Repositories
 
                     var reader = command.ExecuteReader();
 
-                    model = ComposeToShopFormInfoEntity(reader);
+                    model = ComposeToShopFormInfoEntity(reader, allowRating);
 
                 }
                 connection.Close();
@@ -165,12 +167,13 @@ namespace Domain.Repositories
                 return model;
         }
 
-        private ShopFormViewModel ComposeToShopFormInfoEntity(MySqlDataReader reader)
+        private ShopFormViewModel ComposeToShopFormInfoEntity(MySqlDataReader reader, bool allowRating)
         {
             var shop = new Shop();
             var categories = new List<FoodItemCategories>();
             var shopCategoriesWithAliases = new List<ShopFoodItemCategories>();
             var shopRating = new UserShopRatingInformation();
+            shopRating.isAllowed = allowRating;
 
             while (reader.Read())
             {
@@ -201,14 +204,21 @@ namespace Domain.Repositories
                 shopCategoriesWithAliases.Add(shopCategory);
             }
 
-            reader.NextResult();
-
-            while (reader.Read())
+            if (allowRating)
             {
-                var userRating = CreateInstance<ShopRatings>(reader);
-                shopRating.Rating = userRating.Rating;
-            }
+                reader.NextResult();
 
+                while (reader.Read())
+                {
+                    var userRating = CreateInstance<ShopRatings>(reader);
+
+                    if (Enum.IsDefined(typeof(Rating), userRating.Rating))
+                        shopRating.UserRating = (Rating)userRating.Rating;
+                    else
+                        shopRating.UserRating = Rating.None;
+                }
+            }
+            
             var shopCategoriesActual = new Dictionary<int,string>();
 
             foreach(var category in categories)

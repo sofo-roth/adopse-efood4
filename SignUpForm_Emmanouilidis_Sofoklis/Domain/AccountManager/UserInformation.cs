@@ -11,7 +11,7 @@
         public string Address { get; set; }
         public string Phone { get; set; }
 
-        public bool isShopOwner { get; set; }
+        public bool IsShopOwner { get; set; }
 
         public bool AllowDataUsage { get; set; }
         public int UserId { get; set; }

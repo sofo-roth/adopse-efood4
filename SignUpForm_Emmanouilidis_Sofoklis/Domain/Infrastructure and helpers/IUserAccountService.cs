@@ -1,5 +1,5 @@
 ﻿using Domain.ValueModels;
-
+using System.Collections.Generic;
 
 namespace Domain.Infrastructure
 {
@@ -19,6 +19,8 @@ namespace Domain.Infrastructure
 
         void SetUserInfo(UserInformation info);
 
-        void GetUserOrders();
+        IEnumerable<OrderDetails> GetUserOrders();
+
+        void GetOrderItems(int orderId);
     }
 }

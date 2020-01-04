@@ -5,14 +5,16 @@ using Domain.Repositories;
 using Domain.ValueModels;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using PasswordHasher = Domain.AccountManager.PasswordHasher;
 
 
 namespace Domain.Services
 {
-    public class UserAccountService : ServiceBase, IUserAccountService
+    public class UserAccountService : UserCartService, IUserAccountService
     {
         private readonly PasswordHasher _hasher ;
+
         private readonly UserAccountRepository _userRepository;
         
         private readonly GeolocationAPI _geoLocation;
@@ -64,7 +66,7 @@ namespace Domain.Services
 
         public int CreateUserShopOwner(UserInformation user, ShopInformation shop)
         {
-            user.isShopOwner = true;
+            user.IsShopOwner = true;
             var id = CreateUser(user);
 
             shop.OwnerId = id;
@@ -105,18 +107,23 @@ namespace Domain.Services
             UserIdentity.SetInstance(user);
         }
 
-        public bool LoginUser(string userName, string password)
+        public bool LoginUser(string username, string providedPassword)
         {
-            var user = _userRepository.ReadUser(userName);
+            var user = _userRepository.ReadUser(username);
 
-            if (!VerifyUserPassword(password, user.Passwd)) return false;
+            if (!VerifyUserPassword(providedPassword, user.Passwd)) return false;
 
             UserIdentity.SetInstance(user);
 
             return true;
         }
 
-        public void GetUserOrders()
+        public IEnumerable<OrderDetails> GetUserOrders()
+        {
+            return _ordersRepository.Read(UserInfo.UserId);
+        }
+
+        public void GetOrderItems(int orderId)
         {
             //todo return model for a grid with db info
         }

@@ -10,7 +10,7 @@ namespace Domain.Services
     public class UserCartService : ServiceBase, IUserCartService
     {
 
-        private readonly OrdersRepository _ordersRepository;
+        private protected readonly OrdersRepository _ordersRepository;
 
         public CartCollection Cart => CartCollection.GetInstance;
 
@@ -28,9 +28,12 @@ namespace Domain.Services
 
             foreach (var items in cartItemsPerShop)
             {
-                ord.ShopId = items.FirstOrDefault().ShopId;
+                var price = items.Sum(x => x.Quantity * (x.Price + x.Ingredients.Sum(y => y.Price)));
 
+                ord.ShopId = items.FirstOrDefault().ShopId;
+                ord.FinalPrice = price;
                 ord.UserId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
+
                 _ordersRepository.MakeOrder(items, ord);
             }
 

@@ -102,6 +102,7 @@
     <Compile Include="Infrastructure and helpers\IUserCartService.cs" />
     <Compile Include="Infrastructure and helpers\PropertyCopier.cs" />
     <Compile Include="Infrastructure and helpers\Attributes.cs" />
+    <Compile Include="Infrastructure and helpers\Rating.cs" />
     <Compile Include="Infrastructure and helpers\SortableBindingList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
