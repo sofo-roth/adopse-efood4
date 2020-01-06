@@ -12,10 +12,12 @@ namespace Domain.Services
 
         private readonly GeolocationAPI _geoLocation;
 
+        private readonly UserAccountRepository _userRepository;
 
         public ShopResultsService() : base()
         {
-            _geoLocation = new GeolocationAPI(); 
+            _geoLocation = new GeolocationAPI();
+            _userRepository = new UserAccountRepository();
         }
 
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
@@ -29,7 +31,7 @@ namespace Domain.Services
 
         public void RecordClick(int shopId)
         {
-            _repository.RecordClick(UserInfo.UserId, shopId);
+            _userRepository.RecordClick(UserInfo.UserId, shopId);
         }
 
         

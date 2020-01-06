@@ -21,6 +21,6 @@ namespace Domain.Infrastructure
 
         IEnumerable<OrderDetails> GetUserOrders();
 
-        void GetOrderItems(int orderId);
+        List<OrderItemViewModel> GetOrderItems(int orderId);
     }
 }

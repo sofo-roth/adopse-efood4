@@ -157,7 +157,7 @@ namespace Domain.Repositories
 
                     var reader = command.ExecuteReader();
 
-                    model = ComposeToShopFormInfoEntity(reader, allowRating);
+                    model = ComposeToShopFormEntity(reader, allowRating);
 
                 }
                 connection.Close();
@@ -167,7 +167,7 @@ namespace Domain.Repositories
                 return model;
         }
 
-        private ShopFormViewModel ComposeToShopFormInfoEntity(MySqlDataReader reader, bool allowRating)
+        private ShopFormViewModel ComposeToShopFormEntity(MySqlDataReader reader, bool allowRating)
         {
             var shop = new Shop();
             var categories = new List<FoodItemCategories>();
@@ -243,7 +243,7 @@ namespace Domain.Repositories
                     IName = reader.GetString("IName"),
                     IngId = reader.GetInt32("IngId"),
                     Price = reader.GetDouble("Price"),
-                    CategoryId = reader.GetInt32("CategoryId"),
+                    CategoryId = reader.GetInt32("CategoryId")
                 };
 
                 yield return ingredient;
@@ -286,24 +286,12 @@ namespace Domain.Repositories
 
         private Dictionary<string, List<FoodItemViewModel>> GetFoodItemsPerCategory(Dictionary<int, string> categories, List<FoodItemViewModel> foodItems)
         {
+            
             return (from f in foodItems
                     group f by f.CategoryId into g
                     select g).ToDictionary(x=> categories[x.Key], x => x.ToList());
         }
 
-        public void RecordClick(int userId, int shopId)
-        {
-            var dto = new UserClicks
-                {
-                ClickDate = DateTime.Now,
-                ShopId = shopId,
-                UserId = userId
-                };
-
-            var script = GetInsertScripts(dto);
-
-            ExecDbScripts(script); 
-
-        }
+        
     }
 }

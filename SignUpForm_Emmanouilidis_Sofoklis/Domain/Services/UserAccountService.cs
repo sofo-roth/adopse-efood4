@@ -123,9 +123,10 @@ namespace Domain.Services
             return _ordersRepository.Read(UserInfo.UserId);
         }
 
-        public void GetOrderItems(int orderId)
+        public List<OrderItemViewModel> GetOrderItems(int orderId)
         {
-            //todo return model for a grid with db info
+
+            return _ordersRepository.ReadLines(orderId);
         }
 
     }

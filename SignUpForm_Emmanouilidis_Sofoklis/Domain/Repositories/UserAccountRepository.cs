@@ -3,7 +3,7 @@ using Domain.DatabaseModels;
 using Domain.Infrastructure;
 using Domain.ValueModels;
 using MySql.Data.MySqlClient;
-
+using System;
 
 namespace Domain.Repositories
 {
@@ -12,7 +12,7 @@ namespace Domain.Repositories
 
         public int Create(UserInformation user)
         {
-            if (CheckIfExists(user.Username)) throw new System.Exception("Username already exists");
+            if (CheckIfExists(user.Username)) throw new Exception("Username already exists");
 
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
@@ -33,7 +33,20 @@ namespace Domain.Repositories
             return ExecDbScripts(script);
         }
 
+        public void RecordClick(int userId, int shopId)
+        {
+            var dto = new UserClicks
+            {
+                ClickDate = DateTime.Now,
+                ShopId = shopId,
+                UserId = userId
+            };
 
+            var script = GetInsertScripts(dto);
+
+            ExecDbScripts(script);
+
+        }
 
         public UserInformation ReadUser(string username)
         {

@@ -65,20 +65,33 @@ namespace Domain.Repositories
             return orders;
         }
 
-        public List<OrderDetails> ReadLines(int orderId)
+        public List<OrderItemViewModel> ReadLines(int orderId)
         {
-            //todo implement this method
-            throw new NotImplementedException();
-            var orders = new List<OrderDetails>();
+            var orders = new List<OrderItemViewModel>();
+
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                var sql = @"SELECT * FROM Orders WHERE Orders.ShopId = @orderId AND UserId = @userId " +
-                            "INNER JOIN Shop on Shop.ShopId=Orders.ShopId";
+                var sql = @"SELECT * FROM OrderLines WHERE OrderId = @orderId " +
+                            "INNER JOIN Ingredients on Ingredients.IngId=OrderLines.IngredientId " +
+                            "INNER JOIN ShopPriceIngredient on ShopPriceIngredient.IngId=Ingredients.IngId; "+
+                            
+                            "SELECT * FROM OrderLines WHERE OrderId = @orderId " +
+                            "INNER JOIN FoodItem on FoodItem.ItemId=OrderLines.FoodItemId " +
+                            "INNER JOIN ShopPriceFoodItem on ShopPriceFoodItem.FoodItemId=FoodItem.ItemId; ";
                 using (var command = new MySqlCommand(sql, connection))
                 {
+                    
                     command.Parameters.AddWithValue("@orderId", orderId);
+
+                    var reader = command.ExecuteReader();
+
+                    var ingredients = GetIngredients(reader);
+
+                    reader.NextResult();
+
+                    orders = GetFoodItems(reader, ingredients).ToList(); ;
 
                 }
 
@@ -161,11 +174,39 @@ namespace Domain.Repositories
             }
         }
 
-        private IEnumerable<OrderLines> GetOrderLines(MySqlDataReader reader)
+
+
+        private IEnumerable<OrderItemViewModel> GetIngredients(MySqlDataReader reader)
         {
             while (reader.Read())
             {
-                yield return CreateInstance<OrderLines>(reader);
+                var ingredient = new OrderItemViewModel
+                {
+                    Name = reader.GetString("IName"),
+                    IngId = reader.GetInt32("IngId"),
+                    Price = reader.GetDouble("Price"),
+                    ParentId = reader.GetInt32("ParentId")
+                };
+
+                yield return ingredient;
+            }
+        }
+
+        private IEnumerable<OrderItemViewModel> GetFoodItems(MySqlDataReader reader, IEnumerable<OrderItemViewModel> ingredients)
+        {
+            while (reader.Read())
+            {
+
+                var lineId = reader.GetInt32("LineId");
+                var foodItem = new OrderItemViewModel
+                {
+                    ItemId = reader.GetInt32("ItemId"),
+                    Name = reader.GetString("ItemName"),
+                    Price = reader.GetDouble("Price"),
+                    FoodIngredients = ingredients.Where(x => x.ParentId == lineId).ToList()
+                };
+
+                yield return foodItem;
             }
         }
 

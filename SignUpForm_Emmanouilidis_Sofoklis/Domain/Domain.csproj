@@ -119,6 +119,7 @@
     <Compile Include="ValueModels\FoodItemIngredientViewModel.cs" />
     <Compile Include="ValueModels\FoodItemViewModel.cs" />
     <Compile Include="ValueModels\OrderDetails.cs" />
+    <Compile Include="ValueModels\OrderItemViewModel.cs" />
     <Compile Include="ValueModels\ShopFormViewModel.cs" />
     <Compile Include="ValueModels\ShopGridViewModel.cs" />
     <Compile Include="ValueModels\ShopInformation.cs" />
