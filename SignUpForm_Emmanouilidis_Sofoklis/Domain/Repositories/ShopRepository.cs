@@ -21,7 +21,7 @@ namespace Domain.Repositories
                 UserId = userId
             };
 
-            var script = GetInsertScripts(dto);
+            var script = GetInsertScript(dto);
             ExecDbScripts(script);
         }
 
@@ -116,7 +116,7 @@ namespace Domain.Repositories
         {
             var dto = new Shop();
             PropertyCopier<ShopInformation, Shop>.Copy(shop, dto);
-            var script = GetInsertScripts(dto);
+            var script = GetInsertScript(dto);
             ExecDbScripts(script);
         }
 

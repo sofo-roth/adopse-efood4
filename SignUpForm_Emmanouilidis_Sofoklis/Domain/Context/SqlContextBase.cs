@@ -12,9 +12,8 @@ namespace Domain.Context
 {
     internal abstract class SqlContextBase
     {
-        protected readonly static string _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-
-
+        protected readonly static string _connectionString = ConfigurationManager.ConnectionStrings["EFood"].ConnectionString;
+        
         #region data mapping methods
 
 
@@ -23,14 +22,14 @@ namespace Domain.Context
 
             var properties = typeof(T).GetProperties();
             var dto = new T();
+            while (reader.Read())
+                foreach (var property in properties)
+                {
+                    var value = GetDtoValue(reader[property.Name]);
+                    var propertyType = property.PropertyType;
 
-            foreach (var property in properties)
-            {
-                var value = GetDtoValue(reader[property.Name]);
-                var propertyType = property.GetType();
-
-                property.SetValue(dto, propertyType.Cast(value));
-            }
+                    property.SetValue(dto, propertyType.Cast(value));
+                }
 
             return dto;
 
@@ -168,7 +167,7 @@ namespace Domain.Context
 
         #region script generator methods
 
-        protected static string GetInsertScripts<T>(T entity)
+        protected static string GetInsertScript<T>(T entity)
         {
             var entityList = new List<T>
             {

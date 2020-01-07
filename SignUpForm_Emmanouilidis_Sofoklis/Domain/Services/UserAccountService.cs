@@ -48,6 +48,8 @@ namespace Domain.Services
 
         public int CreateUser(UserInformation user)
         {
+            var newUser = UserIdentity.Instance;
+
             int id = 0;
 
             user.Passwd = RetrieveHash(user.Passwd);
@@ -74,6 +76,7 @@ namespace Domain.Services
             var coords = _geoLocation.CalculateLatLong(shop.Address);
             shop.Latitude = coords.Latitude;
             shop.Longitude = coords.Longitude;
+            shop.IsActive = false;
 
             _repository.Create(shop);
 
@@ -83,6 +86,7 @@ namespace Domain.Services
 
         public void Update(UserInformation user)
         {
+            if (UserInfo.UserId <= 0) throw new InvalidOperationException("Can't update user info without loging in.");
             user.UserId = UserInfo.UserId;
 
             user.Passwd = UserInfo.Passwd;
@@ -109,7 +113,9 @@ namespace Domain.Services
 
         public bool LoginUser(string username, string providedPassword)
         {
-            var user = _userRepository.ReadUser(username);
+            var user = UserIdentity.Instance;
+
+            user = _userRepository.ReadUser(username);
 
             if (!VerifyUserPassword(providedPassword, user.Passwd)) return false;
 

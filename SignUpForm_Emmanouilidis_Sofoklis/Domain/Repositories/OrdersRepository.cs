@@ -214,7 +214,7 @@ namespace Domain.Repositories
         {
             int id = -1;
 
-            var script = GetInsertScripts(dto);
+            var script = GetInsertScript(dto);
             using (var command = new MySqlCommand(script, connection, transaction))
             {
 

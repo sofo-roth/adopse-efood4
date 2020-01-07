@@ -12,12 +12,12 @@ namespace Domain.Repositories
 
         public int Create(UserInformation user)
         {
-            if (CheckIfExists(user.Username)) throw new Exception("Username already exists");
+            if (CheckIfExists(user.Username)) return -1;
 
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
 
-            var script = GetInsertScripts(userDto);
+            var script = GetInsertScript(userDto);
 
             return ExecDbScripts(script);
         }
@@ -42,7 +42,7 @@ namespace Domain.Repositories
                 UserId = userId
             };
 
-            var script = GetInsertScripts(dto);
+            var script = GetInsertScript(dto);
 
             ExecDbScripts(script);
 
@@ -85,7 +85,7 @@ namespace Domain.Repositories
         {
             var user = GetUserInfo(username);
 
-            return user.UserId <= 0;
+            return user.UserId > 0;
         }
 
     }
