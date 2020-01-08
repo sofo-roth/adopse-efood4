@@ -43,7 +43,7 @@ CREATE TABLE `fooditem` (
   `ItemId` int(11) NOT NULL,
   `ItemName` varchar(75) DEFAULT NULL,
   `CategoryId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ CREATE TABLE `fooditem` (
 CREATE TABLE `fooditemcategories` (
   `CategoryId` int(11) NOT NULL,
   `FoodType` varchar(75) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `fooditemcategories` (
 CREATE TABLE `ingredients` (
   `IngId` int(11) NOT NULL,
   `Iname` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ CREATE TABLE `orderlines` (
   `IngId` int(11) DEFAULT NULL,
   `FoodItemId` int(11) DEFAULT NULL,
   `ParentId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE `orders` (
   `OrderTime` datetime DEFAULT NULL,
   `Delivered` tinyint(1) DEFAULT '0',
   `Canceled` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE `shop` (
   `Rating` double DEFAULT NULL,
   `Latitude` double DEFAULT NULL,
   `Longitude` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,7 @@ CREATE TABLE `shopfooditemcategories` (
   `ShopId` int(11) DEFAULT NULL,
   `CategoryId` int(11) DEFAULT NULL,
   `CategoryAlias` varchar(75) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -145,7 +145,7 @@ CREATE TABLE `shoppricefooditem` (
   `FooditemId` int(11) DEFAULT NULL,
   `ShopId` int(11) DEFAULT NULL,
   `Price` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,7 @@ CREATE TABLE `shoppriceingredient` (
   `IngId` int(11) DEFAULT NULL,
   `ShopId` int(11) DEFAULT NULL,
   `Price` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,7 @@ CREATE TABLE `shopratings` (
   `ShopId` int(11) DEFAULT NULL,
   `UserId` int(11) DEFAULT NULL,
   `Rating` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -182,7 +182,7 @@ CREATE TABLE `shopworkinghours` (
   `shopId` int(11) DEFAULT NULL,
   `Duration` int(11) DEFAULT NULL,
   `WorkStart` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -195,7 +195,7 @@ CREATE TABLE `userclicks` (
   `UserId` int(11) DEFAULT NULL,
   `ShopId` int(11) DEFAULT NULL,
   `ClickDate` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -205,7 +205,7 @@ CREATE TABLE `userclicks` (
 
 CREATE TABLE `userstable` (
   `Username` varchar(50) NOT NULL,
-  `Passwd` varchar(50) NOT NULL,
+  `Passwd` varchar(100) NOT NULL,
   `FName` varchar(50) DEFAULT NULL,
   `LName` varchar(50) DEFAULT NULL,
   `Email` varchar(50) DEFAULT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE `userstable` (
   `Phone` char(15) DEFAULT NULL,
   `UserId` int(11) NOT NULL,
   `AllowDataUsage` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
