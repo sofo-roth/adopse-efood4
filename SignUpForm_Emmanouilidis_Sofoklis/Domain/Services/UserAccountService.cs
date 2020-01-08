@@ -20,7 +20,6 @@ namespace Domain.Services
         private readonly GeolocationAPI _geoLocation;
 
 
-
         public UserAccountService() : base()
         {
             _hasher = new PasswordHasher();
@@ -86,14 +85,9 @@ namespace Domain.Services
 
         public void Update(UserInformation user)
         {
-            if (UserInfo.UserId <= 0) throw new InvalidOperationException("Can't update user info without loging in.");
-            user.UserId = UserInfo.UserId;
-
             user.Passwd = UserInfo.Passwd;
 
-            _userRepository.Update(user);
-
-            UserIdentity.SetInstance(user);
+            UpdateUser(user);
         }
 
         public void UpdateWithNewPassword(UserInformation user, string oldPassword)
@@ -102,12 +96,21 @@ namespace Domain.Services
             if (!isValid)
                 throw new Exception("Wrong password provided.");
 
-            user.UserId = UserInfo.UserId;
-
             user.Passwd = RetrieveHash(user.Passwd);
 
-            _userRepository.Update(user);
-            
+            UpdateUser(user);
+        }
+
+        private void UpdateUser(UserInformation user)
+        {
+            if (UserInfo.UserId <= 0) throw new InvalidOperationException("Can't update user info without loging in.");
+
+            user.UserId = UserInfo.UserId;
+
+            var isNewUsername = !user.Username.Equals(UserInfo.Username);
+
+            _userRepository.Update(user, isNewUsername);
+
             UserIdentity.SetInstance(user);
         }
 

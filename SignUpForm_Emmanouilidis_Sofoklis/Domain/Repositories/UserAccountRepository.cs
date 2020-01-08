@@ -12,7 +12,7 @@ namespace Domain.Repositories
 
         public int Create(UserInformation user)
         {
-            if (CheckIfExists(user.Username)) return -1;
+            if (CheckIfExists(user.Username)) throw new InvalidOperationException("Username already exists. Registration failed.");
 
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
@@ -22,8 +22,11 @@ namespace Domain.Repositories
             return ExecDbScripts(script);
         }
 
-        public int Update(UserInformation user)
+        public int Update(UserInformation user, bool isNewUsername)
         {
+            if(isNewUsername)
+                if (CheckIfExists(user.Username)) throw new InvalidOperationException("Username already exists. Update failed.");
+
             var userDto = new Userstable();
             PropertyCopier<UserInformation, Userstable>.Copy(user, userDto);
 

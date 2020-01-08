@@ -21,6 +21,7 @@ namespace Domain.Services
         {
             var cartItems = GetCartItems();
 
+            var userId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
 
             var cartItemsPerShop = from b in cartItems
                                    group b by b.ShopId into g
@@ -32,7 +33,7 @@ namespace Domain.Services
 
                 ord.ShopId = items.FirstOrDefault().ShopId;
                 ord.FinalPrice = price;
-                ord.UserId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
+                ord.UserId = userId;
 
                 _ordersRepository.MakeOrder(items, ord);
             }
