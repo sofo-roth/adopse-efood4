@@ -22,31 +22,89 @@ namespace Domain.Repositories
             };
 
             var script = GetInsertScript(dto);
-            ExecDbScripts(script);
-        }
-
-        public void RateShopUpdate(int userId, int shopId, int score)
-        {
 
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var sql = @"UPDATE ShopRatings SET Rating=score WHERE ShopId=@shopId AND UserId=@userId"; 
-
-                using (var command = new MySqlCommand(sql, connection))
+                using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
                 {
-                    command.Parameters.AddWithValue("@shopId", shopId);
-                    command.Parameters.AddWithValue("@userId", userId);
-                    command.Parameters.AddWithValue("@score", score);
 
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        using (var command = new MySqlCommand(script, connection, transaction))
+                            command.ExecuteNonQuery();
 
+                        var avg = GetShopRatings(shopId, connection, transaction).Average();
+
+                        ShopAverageRatingUpdate(shopId, avg, connection, transaction);
+
+                        transaction.Commit();
+
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+
+                        throw;
+                    }
+                    finally
+                    {
+                        connection.Close();
+
+                    }
                 }
-                connection.Close();
             }
         }
 
+        public void RateShopUpdate(int userId, int shopId, int score)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
+                {
+
+                    try
+                    {
+                        var sql = "UPDATE ShopRatings SET Rating=@score WHERE ShopId=@shopId AND UserId=@userId";
+
+                        using (var command = new MySqlCommand(sql, connection))
+                        {
+                            command.Parameters.AddWithValue("@shopId", shopId);
+                            command.Parameters.AddWithValue("@userId", userId);
+                            command.Parameters.AddWithValue("@score", score);
+
+                            command.ExecuteNonQuery();
+
+                        }
+
+                        var avg = GetShopRatings(shopId, connection, transaction).Average();
+
+                        ShopAverageRatingUpdate(shopId, avg, connection, transaction);
+
+                        transaction.Commit();
+
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+
+                        throw;
+                    }
+                    finally
+                    {
+                        connection.Close();
+
+                    }
+                }
+            }
+        }
+
+
         
+
 
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
@@ -165,6 +223,39 @@ namespace Domain.Repositories
 
 
                 return model;
+        }
+
+        private IEnumerable<double> GetShopRatings(int shopId, MySqlConnection connection, MySqlTransaction transaction)
+        {
+                var sql = "SELECT Rating FROM ShopRatings WHERE ShopId=@shopId";
+
+                using (var command = new MySqlCommand(sql, connection, transaction))
+                {
+                    command.Parameters.AddWithValue("@shopId", shopId);
+                    command.ExecuteNonQuery();
+
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        yield return reader.GetDouble("Rating");
+                    }
+
+                }
+        }
+
+        private void ShopAverageRatingUpdate(int shopId, double avg, MySqlConnection connection, MySqlTransaction transaction)
+        {
+            var sql = "UPDATE Shop SET Rating=@avg WHERE ShopId=@shopId";
+
+            using (var command = new MySqlCommand(sql, connection, transaction))
+            {
+                command.Parameters.AddWithValue("@shopId", shopId);
+                command.Parameters.AddWithValue("@avg", avg);
+
+                command.ExecuteNonQuery();
+
+            }
         }
 
         private ShopFormViewModel ComposeToShopFormEntity(MySqlDataReader reader, bool allowRating)

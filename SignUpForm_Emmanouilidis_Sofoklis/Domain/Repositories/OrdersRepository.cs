@@ -33,9 +33,9 @@ namespace Domain.Repositories
                     }
 
                 }
-
-                return canRate;
+                connection.Close();
             }
+            return canRate;
         }
 
         public List<OrderDetails> Read(int userId)
@@ -59,8 +59,8 @@ namespace Domain.Repositories
                     orders = GetOrders(reader).ToList();
 
                 }
+                connection.Close();
 
-               
             }
             return orders;
         }
@@ -94,7 +94,7 @@ namespace Domain.Repositories
                     orders = GetFoodItems(reader, ingredients).ToList(); ;
 
                 }
-
+                connection.Close();
 
             }
             return orders;

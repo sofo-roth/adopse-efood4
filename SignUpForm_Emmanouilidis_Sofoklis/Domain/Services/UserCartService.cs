@@ -19,6 +19,8 @@ namespace Domain.Services
 
         public virtual void CheckOut(OrderDetails ord)
         {
+            if (Cart.Count() == 0) return;
+
             var cartItems = GetCartItems();
 
             var userId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
