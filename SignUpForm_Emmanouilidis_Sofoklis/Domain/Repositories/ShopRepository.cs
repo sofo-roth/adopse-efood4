@@ -190,13 +190,13 @@ namespace Domain.Repositories
                            "WHERE Shop.ShopId = @shopId; " +
 
                            "SELECT * FROM ShopPriceIngredient " +
-                           "WHERE ShopPriceIngredient.ShopId = @shopId " +
                            "INNER JOIN Ingredients ON Ingredients.IngId=ShopPriceIngredient.IngId " +
-                           "INNER JOIN FoodCategoryIngredients ON FoodCategoryIngredients.IngredientId = Ingredients.IngId ;" +
+                           "INNER JOIN FoodCategoryIngredients ON FoodCategoryIngredients.IngredientId = Ingredients.IngId " +
+                           "WHERE ShopPriceIngredient.ShopId = @shopId; " +
 
                            "SELECT * FROM ShopPriceFoodItem " +
-                           "WHERE ShopPriceFoodItem.ShopId = @shopId " +
-                           "INNER JOIN FoodItem ON ShopPriceFoodItem.FoodItemId=FoodItem.ItemId; "  +
+                           "INNER JOIN FoodItem ON ShopPriceFoodItem.FoodItemId=FoodItem.ItemId "  +
+                           "WHERE ShopPriceFoodItem.ShopId = @shopId; " +
 
                            "SELECT * FROM FoodItemCategories; " +
                            
@@ -273,11 +273,11 @@ namespace Domain.Repositories
 
             reader.NextResult();
 
-            var ingredients = GetIngredients(reader);
+            var ingredients = GetIngredients(reader).ToList();
 
             reader.NextResult();
 
-            var foodItems = GetFoodItems(reader,ingredients);
+            var foodItems = GetFoodItems(reader,ingredients).ToList();
 
             reader.NextResult();
 
@@ -304,9 +304,9 @@ namespace Domain.Repositories
                     var userRating = CreateInstance<ShopRatings>(reader);
 
                     if (Enum.IsDefined(typeof(Rating), userRating.Rating))
-                        shopRating.UserRating = (Rating)userRating.Rating;
+                        shopRating.StarRating = (Rating)userRating.Rating;
                     else
-                        shopRating.UserRating = Rating.None;
+                        shopRating.StarRating = Rating.None;
                 }
             }
             

@@ -22,11 +22,12 @@ namespace Domain.Services
 
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {
-            var dto = _repository.Read(address, ref foodCategories);
+            var dto = _repository.Read(address, ref foodCategories).ToList();
+            var addressCoords = _geoLocation.CalculateLatLong(address);
             
-            dto.Update(x => x.Distance = _geoLocation.CalculateDistance(address, x)); 
+            dto.Update(x => x.Distance = _geoLocation.CalculateDistance(address, addressCoords, x)); 
 
-            return dto.Where(x => x.Distance < 5000);
+            return dto.Where(x => x.Distance < 10000);
         }
 
         public void RecordClick(int shopId)

@@ -18,7 +18,7 @@ namespace Domain.Repositories
             {
                 connection.Open();
 
-                var sql = "SELECT COUNT(*) FROM Orders WHERE ShopId = @shopId AND UserId = @userId; ";
+                var sql = "SELECT * FROM Orders WHERE ShopId = @shopId AND UserId = @userId AND Delivered=1 AND Canceled=0; ";
                 using (var command = new MySqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@shopId", shopId);
@@ -47,8 +47,8 @@ namespace Domain.Repositories
                 connection.Open();
 
                 var sql = @"SELECT Orders.UserId,Orders.OrderId, Orders.ShopId, Orders.UserAddress, Orders.Comments, Orders.OrderTime, Orders.Delivered, Orders.Canceled, Orders.FinalPrice, Shop.Name as shopName" +
-                            "FROM Orders WHERE Orders.UserId = @userId AND Orders.Delivered=1 AND Orders.Canceled=0 " +
-                            "INNER JOIN Shop on Shop.ShopId=Orders.ShopId";
+                            "FROM Orders INNER JOIN Shop on Shop.ShopId=Orders.ShopId " +
+                            "WHERE Orders.UserId = @userId AND Orders.Delivered=1 AND Orders.Canceled=0; ";
 
                 using (var command = new MySqlCommand(sql, connection))
                 {
@@ -73,13 +73,14 @@ namespace Domain.Repositories
             {
                 connection.Open();
 
-                var sql = @"SELECT * FROM OrderLines WHERE OrderId = @orderId " +
-                            "INNER JOIN Ingredients on Ingredients.IngId=OrderLines.IngredientId " +
-                            "INNER JOIN ShopPriceIngredient on ShopPriceIngredient.IngId=Ingredients.IngId; "+
-                            
-                            "SELECT * FROM OrderLines WHERE OrderId = @orderId " +
-                            "INNER JOIN FoodItem on FoodItem.ItemId=OrderLines.FoodItemId " +
-                            "INNER JOIN ShopPriceFoodItem on ShopPriceFoodItem.FoodItemId=FoodItem.ItemId; ";
+                var sql = @"SELECT * FROM OrderLines INNER JOIN Ingredients on Ingredients.IngId=OrderLines.IngredientId" +
+                            "INNER JOIN ShopPriceIngredient on ShopPriceIngredient.IngId=Ingredients.IngId "+
+                            "WHERE OrderId = @orderId; " +
+
+
+                            "SELECT * FROM OrderLines INNER JOIN FoodItem on FoodItem.ItemId=OrderLines.FoodItemId" +
+                            "INNER JOIN ShopPriceFoodItem on ShopPriceFoodItem.FoodItemId=FoodItem.ItemId "+
+                            "WHERE OrderId = @orderId; ";
                 using (var command = new MySqlCommand(sql, connection))
                 {
                     

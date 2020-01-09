@@ -12,9 +12,11 @@ namespace Domain.Services
 
         public ShopFormViewModel Read(int shopId)
         {
-            var canRate = _ordersRepository.CanRate(UserInfo.UserId, shopId);
+            var id = UserInfo.UserId;
 
-            var model = _repository.Read(UserInfo.UserId, shopId, canRate);
+            var canRate = id <= 0 ? false : _ordersRepository.CanRate(id, shopId);
+
+            var model = _repository.Read(id, shopId, canRate);
 
             return model;
         }

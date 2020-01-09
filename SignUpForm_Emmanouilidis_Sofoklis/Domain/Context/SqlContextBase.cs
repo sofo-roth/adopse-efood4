@@ -13,7 +13,7 @@ namespace Domain.Context
     internal abstract class SqlContextBase
     {
         protected readonly static string _connectionString = ConfigurationManager.ConnectionStrings["EFood"].ConnectionString;
-        
+
         #region data mapping methods
 
 
@@ -22,14 +22,14 @@ namespace Domain.Context
 
             var properties = typeof(T).GetProperties();
             var dto = new T();
-            while (reader.Read())
-                foreach (var property in properties)
-                {
-                    var value = GetDtoValue(reader[property.Name]);
-                    var propertyType = property.PropertyType;
 
-                    property.SetValue(dto, propertyType.Cast(value));
-                }
+            foreach (var property in properties)
+            {
+                var value = GetDtoValue(reader[property.Name]);
+                var propertyType = property.PropertyType;
+
+                property.SetValue(dto, propertyType.Cast(value));
+            }
 
             return dto;
 

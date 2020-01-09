@@ -13,13 +13,13 @@ namespace Domain.API
     {
         private readonly static string _key = ConfigurationManager.AppSettings["APIKey"];
 
-        public double CalculateDistance(string userAddress, ShopGridViewModel shop)
+        public double CalculateDistance(string userAddress, GeoCoordinate userAddressCoords, ShopGridViewModel shop)
         {
-            if (!shop.Latitude.HasValue && !shop.Longitude.HasValue)
+            if (!shop.Latitude.HasValue || !shop.Longitude.HasValue)
                 return CalculateDistance(userAddress, shop.Address);
 
-            var userCoords = CalculateLatLong(userAddress);
-            return CalculateDistanceFromKnownCoordinates(userCoords, shop.Latitude.Value, shop.Longitude.Value);
+            
+            return CalculateDistanceFromKnownCoordinates(userAddressCoords, shop.Latitude.Value, shop.Longitude.Value);
         }
 
 
@@ -73,7 +73,7 @@ namespace Domain.API
                      
                     double.TryParse(latitude, out double lat);
 
-                    double.TryParse(latitude, out double lng);
+                    double.TryParse(longitude, out double lng);
 
                     coordinates.Latitude = lat;
                     coordinates.Longitude = lng;

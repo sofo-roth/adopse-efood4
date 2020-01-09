@@ -10,6 +10,7 @@ namespace Domain.Infrastructure
     {
         public static dynamic Cast(this Type Type, object data)
         {
+            if (data == null) return null;
             var DataParam = Expression.Parameter(typeof(object), "data");
             var Body = Expression.Block(Expression.Convert(Expression.Convert(DataParam, data.GetType()), Type));
 
@@ -29,7 +30,7 @@ namespace Domain.Infrastructure
         /// <param name="source">The source sequence.</param>
         /// <param name="update">The update statement to execute for each element.</param>
         /// <returns>The numer of records affected.</returns>
-        public static int Update<TSource>(this IEnumerable<TSource> source, Func<TSource> update)
+        public static IEnumerable<TSource> Update<TSource>(this IEnumerable<TSource> source, Func<TSource> update)
         {
             if (source == null) throw new ArgumentNullException("source");
             if (update == null) throw new ArgumentNullException("update");
@@ -38,11 +39,10 @@ namespace Domain.Infrastructure
 
             int count = 0;
             foreach (TSource element in source)
-            {
                 update(element);
-                count++;
-            }
-            return count;
+                
+            
+            return source;
         }
 
         public static IEnumerable<IEnumerable<T>> SplitIntoSections<T>(this IEnumerable<T> source,

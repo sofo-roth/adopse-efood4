@@ -75,7 +75,9 @@ namespace Domain.Repositories
                     command.Parameters.AddWithValue("@username", username);
 
                     var reader = command.ExecuteReader();
-                    user = CreateInstance<Userstable>(reader);
+
+                    while (reader.Read())
+                        user = CreateInstance<Userstable>(reader);
 
 
                 }

@@ -15,7 +15,9 @@ namespace Domain.Services
         public CartCollection Cart => CartCollection.GetInstance;
 
 
-        public UserCartService() : base() { }
+        public UserCartService() : base() {
+            _ordersRepository = new OrdersRepository();
+        }
 
         public virtual void CheckOut(OrderDetails ord)
         {
