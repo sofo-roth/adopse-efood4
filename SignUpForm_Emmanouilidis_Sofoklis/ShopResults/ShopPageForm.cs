@@ -1,14 +1,10 @@
 ﻿using Domain.Infrastructure;
 using Domain.Services;
 using Domain.ValueModels;
+using Fivestar;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShopResults
@@ -34,18 +30,9 @@ namespace ShopResults
 
             PopulateCategoriesGrid();
 
+            RateShop.Enabled = _model.UserRating.isAllowed;
 
-        }
-
-        private void PrintShopInfo()
-        {
-            ShopNameLabel.Text = _model.Info.Name;
-
-            ShopAddress.Text = _model.Info.Address + " - Tilefono epikoinonias " + _model.Info.Phone;
-
-            Elaxisti.Text = "Elaxisth timh: " + _model.Info.Elaxisti;
-
-            Rating.Text = "Krhtikh: " + _model.Info.Rating;
+            PopulateMenuStrip();
 
         }
 
@@ -53,6 +40,21 @@ namespace ShopResults
         {
             CategoriesGrid.ClearSelection();
         }
+
+        private void PrintShopInfo()
+        {
+            ShopNameLabel.Text = _model.Info.Name;
+
+            ShopAddress.Text += _model.Info.Address;
+
+            Phone.Text += _model.Info.Phone; 
+
+            Elaxisti.Text += _model.Info.Elaxisti;
+
+            Rating.Text += _model.Info.Rating;
+
+        }
+        
 
         private void PopulateCategoriesGrid()
         {
@@ -66,11 +68,59 @@ namespace ShopResults
 
         }
 
+        private void PopulateMenuStrip()
+        {
+            var cartMenuItem = new ToolStripMenuItem("View my cart");
+            cartMenuItem.Click += new EventHandler(OpenCart);
+
+            UserOptions.DropDownItems.Add(cartMenuItem);
+
+            if (_service.UserInfo.UserId <= 0) return;
+
+            var logoutMenuItem = new ToolStripMenuItem("Logout");
+            logoutMenuItem.Click += new EventHandler((sender, e) => _service.LogoutUser());
+
+            UserOptions.DropDownItems.Add(logoutMenuItem);
+
+            var updateUserMenuItem = new ToolStripMenuItem("Update my info");
+            updateUserMenuItem.Click += new EventHandler(OpenUserUpdate);
+
+            UserOptions.DropDownItems.Add(updateUserMenuItem);
+
+            var ordersMenuItem = new ToolStripMenuItem("View my orders");
+            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
+
+            UserOptions.DropDownItems.Add(ordersMenuItem);
+        }
+
+        private void OpenUserUpdate(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void OpenCart(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void OpenUserOrders(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void RateShop_Click(object sender, EventArgs e)
+        {
+            
+            var nextForm = new MainWindow(); //new MainWindow(_model.UserRating.StarRating); (make constructor accept this)
+            this.Hide();
+            nextForm.InitializeComponent();  //todo: verify that this opens the form
+            this.Close();
+        }
+
         private void CategoryClicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            //var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[dataGridView1.Columns["Id"].Index].Value;
             var category = CategoriesGrid.CurrentRow.Cells[CategoriesGrid.Columns["Category"].Index].Value.ToString();
 
             var foodItems = _model.FoodItems[category];
@@ -90,13 +140,18 @@ namespace ShopResults
 
             FoodItemsGrid.Columns["ItemName"].HeaderText = "Food items";
 
+            AddToCart.Enabled = false; 
+
+            IngredientsGrid.DataSource = null;
+
+
         }
 
         private void FoodItemClicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+            
 
-            //var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[dataGridView1.Columns["Id"].Index].Value;
             var category = CategoriesGrid.CurrentRow.Cells[CategoriesGrid.Columns["Category"].Index].Value.ToString();
 
             var itemId = (int)FoodItemsGrid.CurrentRow.Cells[FoodItemsGrid.Columns["ItemId"].Index].Value;
@@ -115,6 +170,8 @@ namespace ShopResults
 
             IngredientsGrid.Columns["IName"].HeaderText = "Ingredients";
 
+            AddToCart.Enabled = IngredientsGrid.RowCount == 0;
+
         }
 
         private void IngredientClicked(object sender, DataGridViewCellEventArgs e)
@@ -123,16 +180,21 @@ namespace ShopResults
 
             IngredientsGrid.CurrentRow.Cells["chk"].Value = !Convert.ToBoolean(value);
 
+            AddToCart.Enabled = GetIngredients().Count() > 0;
+
         }
 
-
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DeselectFoodItem(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-
+            FoodItemsGrid.ClearSelection();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DeselectFoodIngredient(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            IngredientsGrid.ClearSelection(); 
+        }
+
+        private void AddToCart_Click(object sender, EventArgs e)
         {
             var ingredients = GetIngredients().ToList();
 
@@ -156,6 +218,11 @@ namespace ShopResults
             FoodItemsGrid.DataSource = null;
             CategoriesGrid.ClearSelection();
 
+            var currentPrice = double.Parse(Price.Text);
+            var itemPrice =  item.Quantity * (item.Price + item.Ingredients.Sum(y => y.Price));
+
+            var finalPrice = currentPrice + itemPrice;
+            Price.Text = finalPrice.ToString();
         }
 
         private IEnumerable<CartItemIngredient> GetIngredients()
@@ -175,5 +242,6 @@ namespace ShopResults
                 yield return ingredient;
             }
         }
+
     }
 }

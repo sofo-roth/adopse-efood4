@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Domain.Infrastructure;
 using System.Linq;
 using Domain.ValueModels;
+using Fivestar;
 
 namespace ShopResults
 {
@@ -96,27 +97,34 @@ namespace ShopResults
             var cartMenuItem = new ToolStripMenuItem("View my cart");
             cartMenuItem.Click += new EventHandler(OpenCart);
 
+            UserOptions.DropDownItems.Add(cartMenuItem); 
 
             if (_service.UserInfo.UserId <= 0) return;
 
             var logoutMenuItem = new ToolStripMenuItem("Logout");
             logoutMenuItem.Click += new EventHandler((sender, e) => _service.LogoutUser());
 
+            UserOptions.DropDownItems.Add(logoutMenuItem);
+
             var updateUserMenuItem = new ToolStripMenuItem("Update my info");
             updateUserMenuItem.Click += new EventHandler(OpenUserUpdate);
 
+            UserOptions.DropDownItems.Add(updateUserMenuItem);
+
             var ordersMenuItem = new ToolStripMenuItem("View my orders");
             ordersMenuItem.Click += new EventHandler(OpenUserOrders);
+
+            UserOptions.DropDownItems.Add(ordersMenuItem);
         }
 
         private void OpenUserUpdate(object sender, EventArgs e)
         {
-            //todo
+            
         }
 
         private void OpenCart(object sender, EventArgs e)
         {
-            //todo
+            
         }
 
         private void OpenUserOrders(object sender, EventArgs e)

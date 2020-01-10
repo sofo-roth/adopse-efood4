@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopResults", "ShopResults\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateShop", "..\Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj", "{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

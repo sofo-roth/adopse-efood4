@@ -31,7 +31,7 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("All");
             this.shopResultsGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.StoreNameSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,18 +63,18 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.UserOptions});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(966, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // optionsToolStripMenuItem
+            // UserOptions
             // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.UserOptions.Name = "UserOptions";
+            this.UserOptions.Size = new System.Drawing.Size(61, 20);
+            this.UserOptions.Text = "Options";
             // 
             // treeView1
             // 
@@ -147,7 +147,7 @@
         #endregion
         private System.Windows.Forms.DataGridView shopResultsGridView;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UserOptions;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TextBox StoreNameSearchBox;
         private System.Windows.Forms.Label label1;

@@ -22,3 +22,9 @@ C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\ShopResults.exe.config
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\ShopResults.exe
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.pdb
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.exe.config
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\efood_mybeta.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\efood_mybeta.pdb
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\efood_mybeta.exe.config
