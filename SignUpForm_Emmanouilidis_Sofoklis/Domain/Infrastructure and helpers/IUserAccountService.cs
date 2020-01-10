@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Infrastructure
 {
-    public interface IUserAccountService : IServiceBase
+    public interface IUserAccountService : IUserCartService
     {
         int CreateUser(UserInformation user);
 
@@ -19,7 +19,7 @@ namespace Domain.Infrastructure
 
         void SetUserInfo(UserInformation info);
 
-        IEnumerable<OrderDetails> GetUserOrders();
+        IEnumerable<OrderDetailsGridViewModel> GetUserOrders();
 
         List<OrderItemViewModel> GetOrderItems(int orderId);
     }

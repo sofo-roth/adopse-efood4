@@ -2,6 +2,7 @@
 using Domain.Infrastructure;
 using Domain.Repositories;
 using Domain.ValueModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,9 +24,11 @@ namespace Domain.Services
         {
             if (Cart.Count() == 0) return;
 
-            var cartItems = GetCartItems();
+            var cartItems = GetCartItems().ToList();
 
             var userId = UserInfo.UserId > 0 ? UserInfo.UserId : (int?)null;
+
+            ord.UserId = userId;
 
             var cartItemsPerShop = from b in cartItems
                                    group b by b.ShopId into g
@@ -37,7 +40,10 @@ namespace Domain.Services
 
                 ord.ShopId = items.FirstOrDefault().ShopId;
                 ord.FinalPrice = price;
-                ord.UserId = userId;
+
+                var shopPriceConstraint = _repository.GetShopPrice(ord.ShopId);
+
+                if (price < shopPriceConstraint) throw new Exception("Could not meet the requirements for one or more orders: Elaxisth timh paragkelias"); 
 
                 _ordersRepository.MakeOrder(items, ord);
             }

@@ -28,6 +28,19 @@ namespace Domain.Infrastructure
                 }
             }
         }
+
+        private static bool TypeIsAssignableFrom(PropertyInfo sourceProperty, PropertyInfo targetProperty, TSource source)
+        {
+            if (sourceProperty.PropertyType == targetProperty.PropertyType) return true;
+
+            object value = sourceProperty.GetValue(source);
+
+            if (Nullable.GetUnderlyingType(targetProperty.PropertyType) == sourceProperty.PropertyType) return true;
+
+            if (Nullable.GetUnderlyingType(sourceProperty.PropertyType) == targetProperty.PropertyType && value != null) return true;
+
+            return false;
+        }
     }
 
     public class PropertyCopier 

@@ -38,17 +38,17 @@ namespace Domain.Repositories
             return canRate;
         }
 
-        public List<OrderDetails> Read(int userId)
+        public List<OrderDetailsGridViewModel> Read(int userId)
         {
-            
-            var orders = new List<OrderDetails>();
+
+            var orders = new List<OrderDetailsGridViewModel>();
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
 
-                var sql = @"SELECT Orders.UserId,Orders.OrderId, Orders.ShopId, Orders.UserAddress, Orders.Comments, Orders.OrderTime, Orders.Delivered, Orders.Canceled, Orders.FinalPrice, Shop.Name as shopName" +
+                var sql = @"SELECT Orders.UserId, Orders.Name, Orders.Phone, Orders.SurName, Orders.OrderId, Orders.ShopId, Orders.UserAddress, Orders.Comments, Orders.OrderTime, Orders.Delivered, Orders.Canceled, Orders.FinalPrice, Shop.Name as shopName " +
                             "FROM Orders INNER JOIN Shop on Shop.ShopId=Orders.ShopId " +
-                            "WHERE Orders.UserId = @userId AND Orders.Delivered=1 AND Orders.Canceled=0; ";
+                            "WHERE Orders.UserId = @userId AND Orders.Canceled=0; ";
 
                 using (var command = new MySqlCommand(sql, connection))
                 {
@@ -73,22 +73,21 @@ namespace Domain.Repositories
             {
                 connection.Open();
 
-                var sql = @"SELECT * FROM OrderLines INNER JOIN Ingredients on Ingredients.IngId=OrderLines.IngredientId" +
-                            "INNER JOIN ShopPriceIngredient on ShopPriceIngredient.IngId=Ingredients.IngId "+
+                var sql = @"SELECT * FROM OrderLines INNER JOIN Ingredients on Ingredients.IngId=OrderLines.IngId " +
+                            "INNER JOIN ShopPriceIngredient on ShopPriceIngredient.IngId=Ingredients.IngId " +
                             "WHERE OrderId = @orderId; " +
 
-
-                            "SELECT * FROM OrderLines INNER JOIN FoodItem on FoodItem.ItemId=OrderLines.FoodItemId" +
-                            "INNER JOIN ShopPriceFoodItem on ShopPriceFoodItem.FoodItemId=FoodItem.ItemId "+
+                            "SELECT * FROM OrderLines INNER JOIN FoodItem on FoodItem.ItemId=OrderLines.FoodItemId " +
+                            "INNER JOIN ShopPriceFoodItem on ShopPriceFoodItem.FoodItemId=FoodItem.ItemId " +
                             "WHERE OrderId = @orderId; ";
                 using (var command = new MySqlCommand(sql, connection))
                 {
-                    
+
                     command.Parameters.AddWithValue("@orderId", orderId);
 
                     var reader = command.ExecuteReader();
 
-                    var ingredients = GetIngredients(reader);
+                    var ingredients = GetIngredients(reader).ToList();
 
                     reader.NextResult();
 
@@ -105,7 +104,7 @@ namespace Domain.Repositories
         public void MakeOrder(IEnumerable<CartItem> items, OrderDetails ord)
         {
             var orderDto = new Orders();
-            
+
 
             PropertyCopier<OrderDetails, Orders>.Copy(ord, orderDto);
 
@@ -114,31 +113,34 @@ namespace Domain.Repositories
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-
                     try
                     {
                         var orderId = InsertOrder(orderDto, connection, transaction);
-                        
-                        foreach(var cartItem in items)
+
+                        foreach (var cartItem in items)
                         {
                             var orderLineFoodItemDto = new OrderLines();
                             PropertyCopier<CartItem, OrderLines>.Copy(cartItem, orderLineFoodItemDto);
 
                             orderLineFoodItemDto.OrderId = orderId;
-                            var parentId = InsertOrder(orderLineFoodItemDto, connection, transaction);
 
-                            foreach(var cartItemIngredient in cartItem.Ingredients)
+                            for (int i = 0; i < cartItem.Quantity; i++)
                             {
-                                var orderLineIngredientDto = new OrderLines();
-                                PropertyCopier<CartItemIngredient, OrderLines>.Copy(cartItemIngredient, orderLineIngredientDto);
+                                var parentId = InsertOrder(orderLineFoodItemDto, connection, transaction);
 
-                                orderLineIngredientDto.OrderId = orderId;
-                                orderLineIngredientDto.ParentId = parentId;
+                                foreach (var cartItemIngredient in cartItem.Ingredients)
+                                {
+                                    var orderLineIngredientDto = new OrderLines();
+                                    PropertyCopier<CartItemIngredient, OrderLines>.Copy(cartItemIngredient, orderLineIngredientDto);
 
-                                InsertOrder(orderLineIngredientDto, connection, transaction);
+                                    orderLineIngredientDto.OrderId = orderId;
+                                    orderLineIngredientDto.ParentId = parentId;
 
+                                    InsertOrder(orderLineIngredientDto, connection, transaction);
+                                }
                             }
                         }
+                            
 
                         transaction.Commit();
 
@@ -151,23 +153,23 @@ namespace Domain.Repositories
                     }
                     finally
                     {
-                        
+
                         connection.Close();
 
                     }
                 }
             }
         }
-        
-        private IEnumerable<OrderDetails> GetOrders(MySqlDataReader reader)
+
+        private IEnumerable<OrderDetailsGridViewModel> GetOrders(MySqlDataReader reader)
         {
             while (reader.Read())
             {
                 var dto = CreateInstance<Orders>(reader);
 
-                var model = new OrderDetails();
+                var model = new OrderDetailsGridViewModel();
 
-                PropertyCopier<Orders, OrderDetails>.Copy(dto, model);
+                PropertyCopier<Orders, OrderDetailsGridViewModel>.Copy(dto, model);
 
                 model.ShopName = reader.GetString("shopName");
 

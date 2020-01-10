@@ -40,7 +40,6 @@ namespace Domain.Repositories
 
                         transaction.Commit();
 
-
                     }
                     catch (Exception)
                     {
@@ -79,12 +78,11 @@ namespace Domain.Repositories
 
                         }
 
-                        var avg = GetShopRatings(shopId, connection, transaction).Average();
+                        var avg = GetShopRatings(shopId, connection, transaction).ToList().Average();
 
                         ShopAverageRatingUpdate(shopId, avg, connection, transaction);
 
                         transaction.Commit();
-
 
                     }
                     catch (Exception)
@@ -102,9 +100,30 @@ namespace Domain.Repositories
             }
         }
 
+        public double GetShopPrice(int shopId)
+        {
+            double elaxisti=0;
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
 
-        
+                var sql = @"SELECT Elaxisti FROM Shop WHERE ShopId = @shopId; ";
 
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@shopId", shopId);
+
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        elaxisti = reader.GetDouble("Elaxisti");
+                    }
+                }
+                connection.Close();
+            }
+            return elaxisti;
+        }
 
         public IEnumerable<ShopGridViewModel> Read(string address, ref Dictionary<int, string> foodCategories)
         {

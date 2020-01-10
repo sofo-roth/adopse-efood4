@@ -127,7 +127,7 @@ namespace Domain.Services
             return true;
         }
 
-        public IEnumerable<OrderDetails> GetUserOrders()
+        public IEnumerable<OrderDetailsGridViewModel> GetUserOrders()
         {
             return _ordersRepository.Read(UserInfo.UserId);
         }

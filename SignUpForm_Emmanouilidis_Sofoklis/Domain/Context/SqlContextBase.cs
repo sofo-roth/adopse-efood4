@@ -25,6 +25,8 @@ namespace Domain.Context
 
             foreach (var property in properties)
             {
+                if (!reader.HasColumn(property.Name)) continue;
+
                 var value = GetDtoValue(reader[property.Name]);
                 var propertyType = property.PropertyType;
 

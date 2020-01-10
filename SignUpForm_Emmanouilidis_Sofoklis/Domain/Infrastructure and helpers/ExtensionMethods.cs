@@ -30,7 +30,7 @@ namespace Domain.Infrastructure
         /// <param name="source">The source sequence.</param>
         /// <param name="update">The update statement to execute for each element.</param>
         /// <returns>The numer of records affected.</returns>
-        public static IEnumerable<TSource> Update<TSource>(this IEnumerable<TSource> source, Func<TSource> update)
+        public static int Update<TSource>(this IEnumerable<TSource> source, Func<TSource> update)
         {
             if (source == null) throw new ArgumentNullException("source");
             if (update == null) throw new ArgumentNullException("update");
@@ -39,10 +39,11 @@ namespace Domain.Infrastructure
 
             int count = 0;
             foreach (TSource element in source)
+            {
                 update(element);
-                
-            
-            return source;
+                count++;
+            }
+            return count;
         }
 
         public static IEnumerable<IEnumerable<T>> SplitIntoSections<T>(this IEnumerable<T> source,
