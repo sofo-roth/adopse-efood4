@@ -25,7 +25,7 @@ namespace ShopResults
 
 
 
-        public ShopResults(string address)
+        public ShopResults(string address) 
         {
             InitializeComponent();
 
@@ -63,28 +63,6 @@ namespace ShopResults
 
         private void PopulateDataGrid()
         {
-
-           
-
-            //var mock = new List<ShopGridViewModel>(); todo: this list will be replaced with database data based on the address
-            //mock.Add(new ShopGridViewModel()        
-            //{
-            //    Address = "meeeeemsseos",            
-            //    ShopName = "shop1",
-            //    Distance = 3.3,
-            //    Id = 0
-            //});
-
-            //mock.Add(new ShopGridViewModel()
-            //{
-            //    Address = "fgedgebfdffscrgrwegwe",
-            //    ShopName = "shop153",
-            //    Distance = 352.3,
-            //    Id = 1
-            //});
-
-            //var binding = new BindingSource();
-            //binding.DataSource = mock;
 
 
 
@@ -150,6 +128,10 @@ namespace ShopResults
         {
             shopResultsGridView.Columns["Id"].Visible = false;
 
+            shopResultsGridView.Columns["Latitude"].Visible = false;
+
+            shopResultsGridView.Columns["Longitude"].Visible = false;
+
             shopResultsGridView.Columns["ShopName"].HeaderText = "Onoma";
 
             foreach (DataGridViewColumn column in shopResultsGridView.Columns)
@@ -163,13 +145,14 @@ namespace ShopResults
         }
 
 
-
-        
-
-
         private void ShopResultsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            shopResultsGridView.Rows[0].Selected = false;
+            shopResultsGridView.ClearSelection();
+        }
+
+        private void FormShown(object sender, EventArgs e)
+        {
+            shopResultsGridView.ClearSelection();
         }
 
 
@@ -181,11 +164,13 @@ namespace ShopResults
             var id = (int)shopResultsGridView.CurrentRow.Cells[shopResultsGridView.Columns["Id"].Index].Value;
             _service.RecordClick(id);
 
-            MessageBox.Show("shop id selected: " + id); //var storeform = new StoreForm(id);
+           // MessageBox.Show("shop id selected: " + id); //var storeform = new StoreForm(id);
+
+            var nextForm = new ShopPageForm(id);
+            this.Hide();
+            nextForm.ShowDialog();
+            this.Close();
         }
-
-        
-
 
 
         private void CheckAllNodes(TreeNodeCollection rootNode, bool isChecked)
@@ -240,8 +225,7 @@ namespace ShopResults
                 //1.na MHN iparxei shop pou oles oi kathgories tou na vriskontai sthn lista twn unchecked nodes
                 //2.to keimeno tou store name search box na einai meros tou onomatos tou store
                 IEnumerable<ShopGridViewModel> bindingData = new List<ShopGridViewModel>();
-                if (!uncheckedNodes.Contains("All"))
-                    bindingData = _shops?.Where(x => (!x.Categories?.All(y => uncheckedNodes.Contains(foodCategories[y])) ?? false) && (x.ShopName.Contains(storeSearch)));
+                bindingData = _shops?.Where(x => !x.Categories.All(y => uncheckedNodes.Contains(foodCategories[y])) && x.ShopName.Contains(storeSearch));
 
                 var bindingList = new SortableBindingList<ShopGridViewModel>(bindingData);
                 var dataBinding = new BindingSource(bindingList, null);
@@ -261,7 +245,7 @@ namespace ShopResults
 
         private void StoreNameSearchBox_KeyUp(object sender, EventArgs e)
         {
-            _dispatcher.Debounce(1500, x => FilterDataGrid(sender));
+            _dispatcher.Debounce(1000, x => FilterDataGrid(sender));
         }
     }
 }

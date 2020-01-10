@@ -13,6 +13,8 @@ namespace Domain.ValueModels
 
         public double Distance { get; set; }
 
+        public double Elaxisti { get; set; }
+
         public List<int> Categories { get; set; }
 
         public double? Latitude { get; set; }

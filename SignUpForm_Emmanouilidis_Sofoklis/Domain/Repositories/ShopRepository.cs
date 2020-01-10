@@ -180,6 +180,7 @@ namespace Domain.Repositories
                                                 Latitude = x.Latitude,
                                                 Longitude = x.Longitude,
                                                 ShopName = x.Name,
+                                                Elaxisti = x.Elaxisti,
                                                 Categories = (from s in shopFoodCategories
                                                              where s.ShopId == x.ShopId
                                                              select s.CategoryId).ToList()                                            
