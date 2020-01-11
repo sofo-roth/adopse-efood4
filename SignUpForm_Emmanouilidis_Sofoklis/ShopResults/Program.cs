@@ -16,7 +16,7 @@ namespace ShopResults
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ShopResults("Paleon Patron Germanou 11, Thessaloniki"));
+            Application.Run(new MainForm());
         }
     }
 }

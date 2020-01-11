@@ -8,7 +8,7 @@ using Domain.ValueModels;
 
 namespace ShopResults
 {
-    public partial class ShopResults : Form
+    public partial class ShopSearchResults : Form
     {
 
 
@@ -24,7 +24,7 @@ namespace ShopResults
 
 
 
-        public ShopResults(string address) 
+        public ShopSearchResults(string address) 
         {
             InitializeComponent();
 

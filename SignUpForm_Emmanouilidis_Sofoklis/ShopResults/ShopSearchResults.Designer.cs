@@ -1,6 +1,6 @@
 ﻿namespace ShopResults
 {
-    partial class ShopResults
+    partial class ShopSearchResults
     {
         /// <summary>
         /// Required designer variable.

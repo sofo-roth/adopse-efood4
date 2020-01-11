@@ -1,6 +1,5 @@
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\ShopResults.pdb
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.csprojAssemblyReference.cache
-C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.ShopResults.resources
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.Properties.Resources.resources
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.csproj.GenerateResource.cache
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.csproj.CoreCompileInputs.cache
@@ -25,3 +24,5 @@ C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.exe
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.pdb
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.exe.config
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.MainForm.resources
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.ShopSearchResults.resources
