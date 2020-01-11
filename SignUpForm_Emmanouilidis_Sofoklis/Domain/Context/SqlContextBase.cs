@@ -167,7 +167,7 @@ namespace Domain.Context
         #endregion
 
 
-        #region script generator methods
+        #region sql script generation methods
 
         protected static string GetInsertScript<T>(T entity)
         {

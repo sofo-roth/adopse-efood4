@@ -119,10 +119,6 @@
       <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\efood_mybeta\efood_mybeta.csproj">
-      <Project>{838fbd03-d2b0-4fe2-b8de-e8b999263320}</Project>
-      <Name>efood_mybeta</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

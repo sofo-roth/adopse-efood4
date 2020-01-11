@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using Domain.Services;
 using System.Windows.Forms;
-
 using Domain.Infrastructure;
 using System.Linq;
 using Domain.ValueModels;
-using Fivestar;
 
 namespace ShopResults
 {

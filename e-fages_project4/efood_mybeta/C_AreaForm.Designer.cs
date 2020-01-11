@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // C_AreaForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "C_AreaForm";
             this.Text = "C_AreaForm";
+            this.Load += new System.EventHandler(this.C_AreaForm_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

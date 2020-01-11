@@ -1,6 +1,4 @@
-﻿
-using System;
-using Domain.Infrastructure;
+﻿using Domain.Infrastructure;
 
 namespace Domain.DatabaseModels
 {

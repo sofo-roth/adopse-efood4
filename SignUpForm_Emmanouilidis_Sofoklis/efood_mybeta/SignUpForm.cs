@@ -93,6 +93,11 @@ namespace efood_mybeta
             fnameTxt.Text = lnameTxt.Text = emailTxt.Text = addrTxt.Text = phoneTxt.Text = usernameTxt.Text = passwdTxt.Text = "";
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //private void button2_Click(object sender, EventArgs e)
         //{
         //    this.Hide();

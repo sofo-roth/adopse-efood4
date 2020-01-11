@@ -16,5 +16,10 @@ namespace efood_mybeta
         {
             InitializeComponent();
         }
+
+        private void C_AreaForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
