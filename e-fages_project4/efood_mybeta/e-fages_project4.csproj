@@ -167,5 +167,11 @@
     <Content Include="images\delivery.png" />
     <Content Include="images\download.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SignUpForm_Emmanouilidis_Sofoklis\Domain\Domain.csproj">
+      <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
