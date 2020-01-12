@@ -121,10 +121,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\e-fages_project4\efood_mybeta\e-fages_project4.csproj">
-      <Project>{031b2498-b5c5-4a52-81e1-7143dc80f210}</Project>
-      <Name>e-fages_project4</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj">
       <Project>{05dd3d9d-fd23-4a05-b8e1-24fb5c802787}</Project>
       <Name>RateShop</Name>

@@ -172,6 +172,10 @@
       <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\ShopResults.csproj">
+      <Project>{91e2a0fc-eeaf-4a7e-a27f-11c20a15a835}</Project>
+      <Name>ShopResults</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -101,10 +101,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\e-fages_project4\efood_mybeta\e-fages_project4.csproj">
-      <Project>{031b2498-b5c5-4a52-81e1-7143dc80f210}</Project>
-      <Name>e-fages_project4</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\SignUpForm_Emmanouilidis_Sofoklis\Domain\Domain.csproj">
       <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
       <Name>Domain</Name>
