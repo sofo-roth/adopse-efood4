@@ -2,6 +2,7 @@
 using Domain.Services;
 using Domain.Infrastructure;
 using System.Windows.Forms;
+using WindowsFormsApp4;
 
 namespace ShopResults
 {
@@ -73,12 +74,14 @@ namespace ShopResults
 
         private void OpenUserUpdate(object sender, EventArgs e)
         {
-
+            var next = new UserInfoUpdate();
+            next.ShowDialog();
         }
 
         private void OpenCart(object sender, EventArgs e)
         {
-
+            var next = new cart();
+            next.ShowDialog();
         }
 
         private void OpenUserOrders(object sender, EventArgs e)

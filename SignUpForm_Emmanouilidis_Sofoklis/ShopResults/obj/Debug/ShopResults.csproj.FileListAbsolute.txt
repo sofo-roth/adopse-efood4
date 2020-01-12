@@ -13,7 +13,6 @@ C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Domain.pdb
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Domain.exe.config
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\MySql.Data.xml
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Google.Protobuf.xml
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Renci.SshNet.xml
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.ShopPageForm.resources
@@ -28,3 +27,8 @@ C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\Fivestar.exe.config
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.UserOrders.resources
 C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.UserOrderDetails.resources
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\WindowsFormsApp4.exe
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\WindowsFormsApp4.pdb
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\bin\Debug\WindowsFormsApp4.exe.config
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.Resources.Resources.resources
+C:\Users\pseir_000\Source\Repos\sofo-roth\adopse-efood4\SignUpForm_Emmanouilidis_Sofoklis\ShopResults\obj\Debug\ShopResults.UserInfoUpdate.resources

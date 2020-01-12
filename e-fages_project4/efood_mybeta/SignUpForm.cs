@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Domain.Infrastructure;
+using Domain.Services;
 namespace efood_mybeta
 {
     public partial class SignUpForm : Form
     {
         MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=efoodusers");
+        IUserAccountService _service;
+
         public SignUpForm()
         {
+            _service = new UserAccountService();
             InitializeComponent();
         }
 
@@ -52,7 +57,7 @@ namespace efood_mybeta
                 com.Parameters.Add("@addr", MySqlDbType.VarChar).Value = address;
                 com.Parameters.Add("@phone", MySqlDbType.VarChar).Value = phone;
                 com.Parameters.Add("@usrn", MySqlDbType.VarChar).Value = usrn;
-                com.Parameters.Add("@passwd", MySqlDbType.VarChar).Value = passwd;
+                com.Parameters.Add("@passwd", MySqlDbType.VarChar).Value = _service.RetrieveHash(passwd);
 
                 if(com.ExecuteNonQuery() == 1)
                 {

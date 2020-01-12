@@ -40,7 +40,8 @@ namespace Domain.Cart
 
         public void RemoveAt(int index)
         {
-            _items.RemoveAt(index);
+            if(_items.Count>index)
+                _items.RemoveAt(index);
         }
 
 

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Domain.Infrastructure;
 using System.Linq;
 using Domain.ValueModels;
+using WindowsFormsApp4;
 
 namespace ShopResults
 {
@@ -62,6 +63,7 @@ namespace ShopResults
 
             var bindingList = new SortableBindingList<ShopGridViewModel>(_shops.Where(x => x.Categories.Count>0));
 
+            ShopCount.Text = bindingList.Count.ToString(); 
             var dataBinding = new BindingSource(bindingList, null);
 
 
@@ -110,12 +112,14 @@ namespace ShopResults
 
         private void OpenUserUpdate(object sender, EventArgs e)
         {
-            
+            var next = new UserInfoUpdate();
+            next.ShowDialog();
         }
 
         private void OpenCart(object sender, EventArgs e)
         {
-            
+            var next = new cart();
+            next.ShowDialog();
         }
 
         private void OpenUserOrders(object sender, EventArgs e)
@@ -229,6 +233,8 @@ namespace ShopResults
                 var dataBinding = new BindingSource(bindingList, null);
 
                 shopResultsGridView.DataSource = dataBinding;
+
+                ShopCount.Text = bindingList.Count.ToString();
             }
 
         }

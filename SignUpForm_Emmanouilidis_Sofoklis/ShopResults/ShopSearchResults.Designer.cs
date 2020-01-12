@@ -36,6 +36,8 @@
             this.StoreNameSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ShopsFound = new System.Windows.Forms.Label();
+            this.ShopCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.shopResultsGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -116,12 +118,34 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Store name:";
             // 
+            // ShopsFound
+            // 
+            this.ShopsFound.AutoSize = true;
+            this.ShopsFound.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShopsFound.Location = new System.Drawing.Point(12, 69);
+            this.ShopsFound.Name = "ShopsFound";
+            this.ShopsFound.Size = new System.Drawing.Size(91, 16);
+            this.ShopsFound.TabIndex = 8;
+            this.ShopsFound.Text = "Shops Found:";
+            // 
+            // ShopCount
+            // 
+            this.ShopCount.AutoSize = true;
+            this.ShopCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShopCount.Location = new System.Drawing.Point(100, 69);
+            this.ShopCount.Name = "ShopCount";
+            this.ShopCount.Size = new System.Drawing.Size(45, 16);
+            this.ShopCount.TabIndex = 9;
+            this.ShopCount.Text = "count";
+            // 
             // ShopSearchResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
             this.ClientSize = new System.Drawing.Size(966, 636);
+            this.Controls.Add(this.ShopCount);
+            this.Controls.Add(this.ShopsFound);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StoreNameSearchBox);
@@ -152,6 +176,8 @@
         private System.Windows.Forms.TextBox StoreNameSearchBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ShopsFound;
+        private System.Windows.Forms.Label ShopCount;
     }
 }
 

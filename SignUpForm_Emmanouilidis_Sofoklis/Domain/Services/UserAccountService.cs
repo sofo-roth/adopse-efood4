@@ -90,13 +90,14 @@ namespace Domain.Services
             UpdateUser(user);
         }
 
-        public void UpdateWithNewPassword(UserInformation user, string oldPassword)
+        public void UpdateWithNewPassword(UserInformation user)//, string oldPassword
         {
-            var isValid = VerifyUserPassword(oldPassword, UserInfo.Passwd);
-            if (!isValid)
-                throw new Exception("Wrong password provided.");
+            //var isValid = VerifyUserPassword(oldPassword, UserInfo.Passwd);
+            //if (!isValid)
+            //    throw new Exception("Wrong password provided.");
 
-            user.Passwd = RetrieveHash(user.Passwd);
+            var notNewPw = user.Passwd == null || user.Passwd == string.Empty;
+            user.Passwd = notNewPw ? UserInfo.Passwd : RetrieveHash(user.Passwd);
 
             UpdateUser(user);
         }
@@ -126,6 +127,20 @@ namespace Domain.Services
 
             return true;
         }
+
+        public void mock()
+        {
+            var user = UserIdentity.Instance;
+            UserIdentity.SetInstance(new UserInformation
+            {
+                UserId = 2,
+                Address = "20 Aristotelous Street, 54624 Thessaloniki",
+                Email = "ankanogradiel@gmail.com",
+                Username = "admin",
+                Passwd = "z3Zpl1/47RpPeQ==EvA/g3VKtuH0HI1cMO1VqZXpTiPa//qbZIugLGVjBPM="
+            });
+        }
+             
 
         public List<OrderDetailsGridViewModel> GetUserOrders()
         {

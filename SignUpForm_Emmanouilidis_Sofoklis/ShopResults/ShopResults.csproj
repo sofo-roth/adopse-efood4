@@ -41,6 +41,10 @@
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=8.0.18.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
@@ -74,6 +78,15 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserInfoUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInfoUpdate.Designer.cs">
+      <DependentUpon>UserInfoUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoUpdateForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -106,6 +119,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.resx" />
     <EmbeddedResource Include="ShopPageForm.resx">
       <DependentUpon>ShopPageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +136,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserInfoUpdate.resx">
+      <DependentUpon>UserInfoUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserOrderDetails.resx">
       <DependentUpon>UserOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +160,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AthinaPapachristou_payment\WindowsFormsApp4\payment.csproj">
+      <Project>{9522b2cd-5567-45fc-a816-44948e6ee275}</Project>
+      <Name>payment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj">
       <Project>{05dd3d9d-fd23-4a05-b8e1-24fb5c802787}</Project>
       <Name>RateShop</Name>
@@ -152,8 +173,10 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Content Include="Images\download.png" />
+    <None Include="Resources\download.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

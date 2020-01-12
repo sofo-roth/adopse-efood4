@@ -4,18 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Domain.Infrastructure;
+using Domain.Services;
+using ShopResults;
 
 namespace efood_mybeta
 {
     public partial class LoginForm : Form
     {
-        MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=efoodusers");
+        IUserAccountService _service;
+
         public LoginForm()
         {
+            _service = new UserAccountService();
             InitializeComponent();
         }
 
@@ -48,21 +50,18 @@ namespace efood_mybeta
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlCommand comm = new MySqlCommand("SELECT `username`,`passwd` from userstable where username = @username and passwd = @passwd",conn);
-            comm.Parameters.Add("@username", MySqlDbType.VarChar).Value = usernameTxt.Text;
-            comm.Parameters.Add("@passwd", MySqlDbType.VarChar).Value = passwdTxt.Text;
 
-            MySqlDataAdapter adapt = new MySqlDataAdapter(comm);
-            DataTable table = new DataTable();
-            adapt.Fill(table);
-
-            if(table.Rows.Count == 0)
+            if(!_service.LoginUser(usernameTxt.Text,passwdTxt.Text))
             {
                 MessageBox.Show("Invalid username or password");
             }
             else
             {
                 MessageBox.Show("LOGGED IN");
+                this.Hide();
+                var next = new MainForm();
+                next.ShowDialog();
+                this.Close();
             }
         }
 

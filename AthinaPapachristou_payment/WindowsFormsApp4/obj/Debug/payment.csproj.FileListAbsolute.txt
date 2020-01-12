@@ -51,9 +51,6 @@ C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payme
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Google.Protobuf.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\BouncyCastle.Crypto.dll
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Renci.SshNet.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.Build.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.Build.Framework.dll
@@ -63,9 +60,6 @@ C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payme
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Domain.pdb
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Domain.exe.config
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\EntityFramework.xml
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\MySql.Data.xml
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\cs\Microsoft.Build.resources.dll
 C:\Users\pseir_000\source\repos\sofo-roth\adopse-efood4\AthinaPapachristou_payment\WindowsFormsApp4\bin\Debug\de\Microsoft.Build.resources.dll

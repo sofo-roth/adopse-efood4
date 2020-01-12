@@ -11,7 +11,9 @@ namespace Domain.Infrastructure
 
         void Update(UserInformation user);
 
-        void UpdateWithNewPassword(UserInformation user, string oldPassword);
+        void UpdateWithNewPassword(UserInformation user);
+
+        string RetrieveHash(string pwd);
 
         bool VerifyUserPassword(string providedPassword, string hashedPassword);
 

@@ -89,5 +89,10 @@ namespace WindowsFormsApp4
             int index = _service.Cart.Count();
             _service.Cart.RemoveAt(index);
         }
+
+        private void cart_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     }
