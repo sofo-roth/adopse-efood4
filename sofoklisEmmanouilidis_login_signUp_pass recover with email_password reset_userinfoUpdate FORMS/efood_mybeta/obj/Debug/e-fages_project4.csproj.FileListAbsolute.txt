@@ -1,0 +1,15 @@
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.exe.config
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.exe
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\bin\Debug\efood_mybeta.pdb
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\bin\Debug\MySql.Data.dll
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\e-fages_project4.csprojAssemblyReference.cache
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.LoginForm.resources
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.PasswordRecoveryForm.resources
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.Properties.Resources.resources
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.ResetPasswordForm.resources
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.SignUpForm.resources
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\e-fages_project4.csproj.GenerateResource.cache
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\e-fages_project4.csproj.CopyComplete
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.exe
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.pdb
+C:\Users\lepas\source\repos\efood_mybeta\efood_mybeta\obj\Debug\efood_mybeta.UserInfoUpdateForm.resources
