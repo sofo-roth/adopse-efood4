@@ -1,0 +1,8 @@
+INSERT INTO `shop`(`ShopId`, `OwnerId`, `Name`, `Address`, `Phone`, `Email`, `Elaxisti`, `IsActive`, `LastSubscription`, `Rating`, `Latitude`, `Longitude`) VALUES (1,1,'Prassas','Μάρκου Μπότσαρη 89',' 231 091 1911','prassas@gmail.com',4,1,5,NULL,NULL,NULL),
+(2,2,'Espania pizza','Κασσάνδρου 68','231 022 2250','espaniapizza@gmail.com',5,1,5,NULL,NULL,NULL);
+(3,3,'Break Time','Αγίας Μαρίνας 3','231 092 8928','breaktime@gmail.com',3,1,5,NULL,NULL,NULL),
+(4,4,'Κουλιγκά','Σ. Δραγουμάνου 25,','231 027 0086','kouligka@gmail.com',4,1,5,NULL,NULL,NULL),
+(5,5,'Limeri','Ολύμπου 116',' 231 020 7545','limeri@gmail.com',5,1,5,NULL,NULL,NULL),
+(6,6,'coffee-eat','Αγίου Δημητρίου 13','231 022 2222','ce@gmail.com',4,1,5,NULL,NULL,NULL),
+(7,7,'Prasserie','Κανάρη 22','231 092 2222','prasserie@gmail.com',4,1,5,NULL,NULL,NULL),
+(8,8,'Πίτσα Μπύρα','Κλεάνθους 45','231 095 2600','pitsampira@gmail.com',5,1,5,NULL,NULL,NULL);
