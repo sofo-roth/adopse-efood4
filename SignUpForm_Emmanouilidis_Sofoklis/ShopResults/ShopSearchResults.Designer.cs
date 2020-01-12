@@ -116,7 +116,7 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Store name:";
             // 
-            // ShopResults
+            // ShopSearchResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,8 +132,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ShopResults";
-            this.Text = "FoodE";
+            this.Name = "ShopSearchResults";
+            this.Text = "e-food";
             this.Load += new System.EventHandler(this.Efood_Load);
             this.Shown += new System.EventHandler(this.FormShown);
             ((System.ComponentModel.ISupportInitialize)(this.shopResultsGridView)).EndInit();

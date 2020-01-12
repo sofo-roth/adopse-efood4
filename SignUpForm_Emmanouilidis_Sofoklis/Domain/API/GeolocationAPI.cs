@@ -67,8 +67,8 @@ namespace Domain.API
                     DataSet dsResult = new DataSet();
                     dsResult.ReadXml(reader);
 
-                    var latitude = dsResult.Tables["location"].Rows[0]["lat"].ToString();
-                    var longitude = dsResult.Tables["location"].Rows[0]["lng"].ToString();
+                    var latitude = dsResult.Tables["location"]?.Rows[0]["lat"].ToString();
+                    var longitude = dsResult.Tables["location"]?.Rows[0]["lng"].ToString();
 
                      
                     double.TryParse(latitude, out double lat);

@@ -257,7 +257,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ShopPageForm";
-            this.Text = "ShopPageForm";
+            this.Text = "e-food";
             this.Load += new System.EventHandler(this.ShopPageForm_Load);
             this.Shown += new System.EventHandler(this.FormShown);
             ((System.ComponentModel.ISupportInitialize)(this.CategoriesGrid)).EndInit();

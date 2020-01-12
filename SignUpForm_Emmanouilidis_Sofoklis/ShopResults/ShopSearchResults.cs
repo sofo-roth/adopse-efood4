@@ -95,24 +95,24 @@ namespace ShopResults
             var cartMenuItem = new ToolStripMenuItem("View my cart");
             cartMenuItem.Click += new EventHandler(OpenCart);
 
-            UserOptions.DropDownItems.Add(cartMenuItem); 
+            UserOptions.DropDownItems.Add(cartMenuItem);
 
             if (_service.UserInfo.UserId <= 0) return;
 
-            var logoutMenuItem = new ToolStripMenuItem("Logout");
-            logoutMenuItem.Click += new EventHandler((sender, e) => _service.LogoutUser());
+            var ordersMenuItem = new ToolStripMenuItem("View my orders");
+            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
 
-            UserOptions.DropDownItems.Add(logoutMenuItem);
+            UserOptions.DropDownItems.Add(ordersMenuItem);
 
             var updateUserMenuItem = new ToolStripMenuItem("Update my info");
             updateUserMenuItem.Click += new EventHandler(OpenUserUpdate);
 
             UserOptions.DropDownItems.Add(updateUserMenuItem);
 
-            var ordersMenuItem = new ToolStripMenuItem("View my orders");
-            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
+            var logoutMenuItem = new ToolStripMenuItem("Logout");
+            logoutMenuItem.Click += new EventHandler((sender, e) => { _service.LogoutUser(); this.Close(); });
 
-            UserOptions.DropDownItems.Add(ordersMenuItem);
+            UserOptions.DropDownItems.Add(logoutMenuItem);
         }
 
         private void OpenUserUpdate(object sender, EventArgs e)
@@ -127,7 +127,8 @@ namespace ShopResults
 
         private void OpenUserOrders(object sender, EventArgs e)
         {
-            //todo
+            var next = new UserOrders();
+            next.ShowDialog();
         }
 
         private void SetDataGridViewOptions()
@@ -166,11 +167,9 @@ namespace ShopResults
         {
             if (e.RowIndex < 0) return;
 
-            //var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[dataGridView1.Columns["Id"].Index].Value;
             var id = (int)shopResultsGridView.CurrentRow.Cells[shopResultsGridView.Columns["Id"].Index].Value;
             _service.RecordClick(id);
 
-           // MessageBox.Show("shop id selected: " + id); //var storeform = new StoreForm(id);
 
             var nextForm = new ShopPageForm(id);
             this.Hide();

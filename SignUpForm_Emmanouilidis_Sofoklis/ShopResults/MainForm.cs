@@ -7,15 +7,18 @@ namespace ShopResults
 {
     public partial class MainForm : Form
     {
-        IUserCartService _service;
+        IUserAccountService _service;
+
         public MainForm()
         {
+            _service = new UserAccountService();
+
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _service = new UserCartService();
+            //_service.LoginUser("admin", "admin");
 
             UseUserAddressButton.Enabled = _service.UserInfo.UserId > 0;
 
@@ -51,20 +54,21 @@ namespace ShopResults
 
             if (_service.UserInfo.UserId <= 0) return;
 
-            var logoutMenuItem = new ToolStripMenuItem("Logout");
-            logoutMenuItem.Click += new EventHandler((sender, e) => _service.LogoutUser());
+            var ordersMenuItem = new ToolStripMenuItem("View my orders");
+            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
 
-            UserOptions.DropDownItems.Add(logoutMenuItem);
+            UserOptions.DropDownItems.Add(ordersMenuItem);
 
             var updateUserMenuItem = new ToolStripMenuItem("Update my info");
             updateUserMenuItem.Click += new EventHandler(OpenUserUpdate);
 
             UserOptions.DropDownItems.Add(updateUserMenuItem);
 
-            var ordersMenuItem = new ToolStripMenuItem("View my orders");
-            ordersMenuItem.Click += new EventHandler(OpenUserOrders);
+            var logoutMenuItem = new ToolStripMenuItem("Logout");
+            logoutMenuItem.Click += new EventHandler((sender, e) => { _service.LogoutUser(); this.Close(); });
 
-            UserOptions.DropDownItems.Add(ordersMenuItem);
+            UserOptions.DropDownItems.Add(logoutMenuItem);
+
         }
 
         private void OpenUserUpdate(object sender, EventArgs e)
@@ -79,7 +83,9 @@ namespace ShopResults
 
         private void OpenUserOrders(object sender, EventArgs e)
         {
-            //todo
+            var next = new UserOrders();
+            next.ShowDialog();
+            
         }
     }
 }

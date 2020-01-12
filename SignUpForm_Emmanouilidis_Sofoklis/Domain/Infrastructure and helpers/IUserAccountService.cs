@@ -19,7 +19,7 @@ namespace Domain.Infrastructure
 
         void SetUserInfo(UserInformation info);
 
-        IEnumerable<OrderDetailsGridViewModel> GetUserOrders();
+        List<OrderDetailsGridViewModel> GetUserOrders();
 
         List<OrderItemViewModel> GetOrderItems(int orderId);
     }

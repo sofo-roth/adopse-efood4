@@ -148,7 +148,7 @@
             this.Controls.Add(this.UserStrip);
             this.MainMenuStrip = this.UserStrip;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "e-food";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.UserStrip.ResumeLayout(false);
             this.UserStrip.PerformLayout();
