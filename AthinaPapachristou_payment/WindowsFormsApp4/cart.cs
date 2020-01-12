@@ -18,7 +18,7 @@ namespace WindowsFormsApp4
     {
        private readonly IUserCartService _service;
         int leftcontrol = 1;
-
+        double total = 0;
         public cart()
             {
             _service = new UserCartService();
@@ -56,18 +56,25 @@ namespace WindowsFormsApp4
             {
                 TextBox t1 = new TextBox();
                 this.Controls.Add(t1);
-            
+                t1.Width = 400;
                 t1.Top = leftcontrol * 25;
                 t1.Left = 100;
-                
-                t1.Text = _service.Cart[i].ToString();
+
+                var price = _service.Cart[i].Price;
+                price += _service.Cart[i].Ingredients.Sum(x => x.Price);
+                price *= _service.Cart[i].Quantity;
+
+                t1.Text = _service.Cart[i].Quantity + " " + _service.Cart[i].Name + ": " + price;
                 leftcontrol = leftcontrol + 1;
 
             }
+           
             for (int j = 0; j < _service.Cart.Count(); j++)
             {
-               
+                double x = _service.Cart[j].Price;
+                total = total + x;
             }
+            timi.Text = total+" ευρώ";
             s.Hide();
            
         }
