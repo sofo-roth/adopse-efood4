@@ -1,11 +1,12 @@
 ﻿using Domain.Infrastructure;
 using Domain.Services;
 using Domain.ValueModels;
-using Fivestar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Forms;
+using Rating = Fivestar.Rating;
 
 namespace ShopResults
 {
@@ -111,11 +112,20 @@ namespace ShopResults
 
         private void RateShop_Click(object sender, EventArgs e)
         {
+
+            //new MainWindow(_model.UserRating.StarRating); (make constructor accept this)
+            //todo: verify that this opens the form
+
             
-            var nextForm = new MainWindow(); //new MainWindow(_model.UserRating.StarRating); (make constructor accept this)
-            this.Hide();
-            nextForm.InitializeComponent();  //todo: verify that this opens the form
-            this.Close();
+            var nextForm = new Rating();
+            var w = new Window
+            {
+                Content = nextForm,
+                Width = 500,
+                Height = 100
+            };
+            w.Show();
+            
         }
 
         private void CategoryClicked(object sender, DataGridViewCellEventArgs e)

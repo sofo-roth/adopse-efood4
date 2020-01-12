@@ -54,16 +54,11 @@ namespace ShopResults
 
         private void FetchData()
         {
-            var addr = _address;
-            
-
             _shops = _service.Read(_address, ref foodCategories);
         }
 
         private void PopulateDataGrid()
         {
-
-
 
             var bindingList = new SortableBindingList<ShopGridViewModel>(_shops.Where(x => x.Categories.Count>0));
 
@@ -77,8 +72,6 @@ namespace ShopResults
 
         private void PopulateTreeView()
         {
-
-
             TreeNodeCollection nodes = treeView1.Nodes;
             foreach (var item in foodCategories.Values)
             {

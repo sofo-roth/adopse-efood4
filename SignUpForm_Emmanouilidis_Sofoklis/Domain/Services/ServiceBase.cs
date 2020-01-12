@@ -1,7 +1,8 @@
 ﻿using Domain.AccountManager;
 using Domain.Repositories;
 using Domain.ValueModels;
-
+using System;
+using System.Diagnostics;
 
 namespace Domain.Services
 {
@@ -14,7 +15,16 @@ namespace Domain.Services
 
         public ServiceBase()
         {
-            _repository = new ShopRepository();
+            try
+            {
+                _repository = new ShopRepository();
+            }
+            catch (TypeInitializationException ex)
+            {
+                Trace.WriteLine(ex.InnerException);
+                throw;
+            }
+           
         }
 
         

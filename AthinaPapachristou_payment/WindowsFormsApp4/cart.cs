@@ -19,8 +19,9 @@ namespace WindowsFormsApp4
 
         public cart()
             {
-                InitializeComponent();
             _service = new UserCartService();
+            InitializeComponent();
+            
 
             
             

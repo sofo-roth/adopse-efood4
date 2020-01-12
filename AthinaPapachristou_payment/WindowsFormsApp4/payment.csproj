@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.2</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -99,6 +99,7 @@
     <EmbeddedResource Include="TroposPliromis.resx">
       <DependentUpon>TroposPliromis.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,6 +129,12 @@
   <ItemGroup>
     <Content Include="e-egafes.sql" />
     <Content Include="efooddata.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SignUpForm_Emmanouilidis_Sofoklis\Domain\Domain.csproj">
+      <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

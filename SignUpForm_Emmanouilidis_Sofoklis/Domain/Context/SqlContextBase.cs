@@ -12,8 +12,8 @@ namespace Domain.Context
 {
     internal abstract class SqlContextBase
     {
-        protected readonly static string _connectionString = ConfigurationManager.ConnectionStrings["EFood"].ConnectionString;
-
+        protected readonly static string _connectionString =  ConfigurationManager.ConnectionStrings["EFood"].ConnectionString;
+        
         #region data mapping methods
 
 
