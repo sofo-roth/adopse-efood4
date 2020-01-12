@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Domain.Infrastructure;
 using Domain.Services;
+using Domain.Cart;
 
 
 namespace WindowsFormsApp4
@@ -16,6 +17,7 @@ namespace WindowsFormsApp4
     public partial class cart : Form
     {
        private readonly IUserCartService _service;
+        int leftcontrol = 1;
 
         public cart()
             {
@@ -31,8 +33,7 @@ namespace WindowsFormsApp4
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
             {
-            string a = _service.Cart.ToString();
-            show.Text = a;
+           
            
             }
 
@@ -48,5 +49,38 @@ namespace WindowsFormsApp4
                 frm1.ShowDialog();
             }
         }
+
+        private void s_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i <_service.Cart.Count(); i++)
+            {
+                TextBox t1 = new TextBox();
+                this.Controls.Add(t1);
+            
+                t1.Top = leftcontrol * 25;
+                t1.Left = 100;
+                
+                t1.Text = _service.Cart[i].ToString();
+                leftcontrol = leftcontrol + 1;
+
+            }
+            for (int j = 0; j < _service.Cart.Count(); j++)
+            {
+               
+            }
+            s.Hide();
+           
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int index = _service.Cart.Count();
+            _service.Cart.RemoveAt(index);
+        }
+    }
     }
