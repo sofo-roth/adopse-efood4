@@ -1,7 +1,5 @@
-οσο αφορα το sign up form οι προσθαφαιρεσεις κωδικα ειναι 
-ηδη ανεβασμενες απο χθες απλως λογω μεταφορας 
+οσο αφορα το sign up form  λογω μεταφορας 
 λαθος εκδοσης SIGN UP FORM στο Main project 
-κανω update τον κωδικα . 
-Οτιδηποτε σειρα κωδικα προστεθηκε ειχε ηδη ανεβαστει 
-πριν την καθορισμενη διορια παραδοσης εργασιας στον φακελο με το ονομα
-sofoklisEmmanouilidis_login_signUp_pass recover with email_password reset_userinfoUpdate FORMS
+κανω update το MAIN PROJECT, μεταφεροντας το sign up form version που ανεβηκε χθες ΠΡΙΝ την διορια παραδοσης στο MAIN PROJECT . 
+Για επιβεβαιωση θα την βρειτε στον φακελο με το ονομα
+sofoklisEmmanouilidis_login_signUp_pass recover with email_password reset_userinfoUpdate FORMS.
