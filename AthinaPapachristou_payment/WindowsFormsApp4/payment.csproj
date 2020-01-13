@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.2</LangVersion>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +54,8 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.18.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -68,6 +70,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cart.cs">
@@ -99,7 +104,6 @@
     <EmbeddedResource Include="TroposPliromis.resx">
       <DependentUpon>TroposPliromis.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,9 +135,13 @@
     <Content Include="efooddata.sql" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\e-fages-project4_Final\Domain\Domain.csproj">
+    <ProjectReference Include="..\..\..\..\Desktop\e-fages-project4_Final\Domain\Domain.csproj">
       <Project>{b3970cd4-481b-4c0b-af8d-bad7c2712915}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Desktop\Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj">
+      <Project>{05dd3d9d-fd23-4a05-b8e1-24fb5c802787}</Project>
+      <Name>RateShop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
