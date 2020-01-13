@@ -6,16 +6,16 @@ A project for a university subject. Our goal is to create an e-food application.
 
    **1.Open a local Apache & MySql server with XAMPP**
    
-   **1.Create database efoodusers (utf8)**
+   **2.Create database efoodusers (utf8)**
                               
-   **2.Execute e-egafes.sql**
+   **3.Execute e-egafes.sql**
                               
-   **3.Execute efooddata.sql**
+   **4.Execute efooddata.sql**
                               
-   **4.Open solution**
+   **5.Open solution**
                               
-   **5.Login with admin/admin credentials or create new user**
+   **6.Login with admin/admin credentials or create new user**
                               
-   **6.Use the app**
+   **7.Use the app**
 
 ### Solution path: adopse-efood4/SignUpForm_Emmanouilidis_Sofoklis/efood_mybeta.sln
