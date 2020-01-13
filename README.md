@@ -4,7 +4,9 @@ A project for a university subject. Our goal is to create an e-food application.
 
 **Steps to open and use the app:**
 
-   **1.Open a local server**
+   **1.Open a local Apache & MySql server with XAMPP**
+   
+   **1.Create database efoodusers (utf8)**
                               
    **2.Execute e-egafes.sql**
                               
