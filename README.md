@@ -16,7 +16,7 @@ A project for a university subject. Our goal is to create an e-food application.
    
    **6.Make sure you have e-fages_project4 as startup project**
                               
-   **7Login with admin/admin credentials or create new user**
+   **7.Login with admin/admin credentials or create new user**
                               
    **8.Use the app**
 
