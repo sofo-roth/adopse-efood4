@@ -20,4 +20,4 @@ A project for a university subject. Our goal is to create an e-food application.
                               
    **8.Use the app**
 
-### Solution path: adopse-efood4(master)/e-fages-project4_Final/e-food4.sln
+### Solution path: adopse-efood4(master)e-food4.sln
