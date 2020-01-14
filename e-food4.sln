@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopResults", "e-fages-project4_Final\ShopResults\ShopResults.csproj", "{91E2A0FC-EEAF-4A7E-A27F-11C20A15A835}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopResults", "e-fages_Solution\e-fages-project4_Final\ShopResults\ShopResults.csproj", "{91E2A0FC-EEAF-4A7E-A27F-11C20A15A835}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "e-fages-project4_Final\Domain\Domain.csproj", "{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "e-fages_Solution\e-fages-project4_Final\Domain\Domain.csproj", "{B3970CD4-481B-4C0B-AF8D-BAD7C2712915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateShop", "Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj", "{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateShop", "e-fages_Solution\Rating_PapachristouAthina\Rate_Star\Fivestar\RateShop.csproj", "{05DD3D9D-FD23-4A05-B8E1-24FB5C802787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e-fages_project4", "e-fages_project4\efood_mybeta\e-fages_project4.csproj", "{031B2498-B5C5-4A52-81E1-7143DC80F210}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e-fages_project4", "e-fages_Solution\e-fages_project4\efood_mybeta\e-fages_project4.csproj", "{031B2498-B5C5-4A52-81E1-7143DC80F210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "payment", "AthinaPapachristou_payment\WindowsFormsApp4\payment.csproj", "{9522B2CD-5567-45FC-A816-44948E6EE275}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "payment", "e-fages_Solution\AthinaPapachristou_payment\WindowsFormsApp4\payment.csproj", "{9522B2CD-5567-45FC-A816-44948E6EE275}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
