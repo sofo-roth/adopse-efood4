@@ -38,12 +38,18 @@ namespace Domain.Cart
             
         }
 
+
         public void RemoveAt(int index)
         {
             if(_items.Count>index)
                 _items.RemoveAt(index);
         }
 
+        public void Empty()
+        {
+            _items = new List<CartItem>();
+
+        }
 
         public int Count()
         {

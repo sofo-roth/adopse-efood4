@@ -5,7 +5,6 @@ using Fivestar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Forms;
 using WindowsFormsApp4;
 using Rating = Fivestar.Rating;
@@ -212,7 +211,7 @@ namespace ShopResults
                 Ingredients = ingredients,
                 FoodItemId = (int)row.Cells["ItemId"].Value,
                 Name = row.Cells["ItemName"].Value.ToString(),
-                ShopId = _model.Info.ShopId,
+                ShopId = _id,
                 Price = (double)row.Cells["Price"].Value
             };
 

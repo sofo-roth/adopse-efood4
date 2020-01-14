@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Device.Location;
-
 using Domain.ValueModels;
 using System.Configuration;
 using System.Globalization;

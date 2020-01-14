@@ -48,6 +48,8 @@ namespace Domain.Services
                 _ordersRepository.MakeOrder(items, ord);
             }
 
+            Cart.Empty();
+
         }
 
         private IEnumerable<CartItem> GetCartItems()

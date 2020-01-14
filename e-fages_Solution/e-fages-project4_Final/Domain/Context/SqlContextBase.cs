@@ -304,7 +304,7 @@ namespace Domain.Context
             {
                 case null:
                     return "NULL";
-                case string str when str.Length > 0:
+                case string str:
                     return "'" + MySqlHelper.EscapeString(str) + "'";
                 case DateTime date:
                     return "'" + GetUTCString(date) + "'";

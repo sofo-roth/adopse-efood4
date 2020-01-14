@@ -61,9 +61,9 @@ namespace efood_mybeta
                 usernameTxt.Text = "";
 
             }
-            if (usernameExists(usrn))
+            else if(emailExists(email))
             {
-                MessageBox.Show("USERNAME: " + usrn + " ALREADY EXISTS");
+                MessageBox.Show("EMAIL: " + email + " ALREADY EXISTS");
                 eLabel.ForeColor = Color.Red;
                 userLabel.ForeColor = Color.Black;
                 cPassLabel.ForeColor = Color.Black;
